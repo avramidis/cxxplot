@@ -17,6 +17,7 @@ namespace cpppyplot {
         PyObject *matplotlib, *plot, *show, *show_fun, *pValue;
     public:
         Plot();
+        ~Plot();
 
         void draw();
     };

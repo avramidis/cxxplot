@@ -9,9 +9,9 @@
 
 namespace cpppyplot {
     Graph::Graph() {
-        Py_Initialize();
-        PyRun_SimpleString("import sys\n"
-                           "sys.argv.append('')\n"
-                           "print(sys.argv)\n");
+//        Py_Initialize();
+//        PyRun_SimpleString("import sys\n"
+//                           "sys.argv.append('')\n"
+//                           "print(sys.argv)\n");
     }
 }
