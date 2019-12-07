@@ -17,7 +17,10 @@ namespace cpppyplot {
 
     class CPPPLOT_EXPORT Graph {
     public:
+        PyObject *matplotlib;
+
         Graph();
+        ~Graph();
     };
 }
 

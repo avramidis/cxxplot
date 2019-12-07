@@ -48,6 +48,11 @@ target_include_directories(cpppyplot PRIVATE
         ${Python3_INCLUDE_DIRS})
 target_link_libraries(cpppyplot PRIVATE ${Python3_LIBRARIES})
 
+set_target_properties(cpppyplot PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_definitions(cpppyplot PRIVATE cppplot_EXPORT)
 endif ()
@@ -56,3 +61,19 @@ endif ()
 add_subdirectory(examples)
 #enable_testing()
 #add_subdirectory(tests)
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cpppyplot.dll
+            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cpppyplot>" "$<TARGET_FILE_DIR:example_1>"
+            VERBATIM)
+    add_custom_target(copyddlexamples ALL
+            DEPENDS ${CMAKE_BINARY_DIR}/examples/cpppyplot.dll cpppyplot
+            VERBATIM)
+
+#    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cpppyplot.dll
+#            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cpppyplot>" "$<TARGET_FILE_DIR:test_timer>"
+#            VERBATIM)
+#    add_custom_target(copyddltests ALL
+#            DEPENDS ${CMAKE_BINARY_DIR}/tests/Chronos.dll cpppyplot
+#            VERBATIM)
+endif ()

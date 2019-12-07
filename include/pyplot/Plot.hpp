@@ -14,11 +14,13 @@
 namespace cpppyplot {
     class CPPPLOT_EXPORT Plot : Graph {
     private:
-        PyObject *matplotlib, *plot, *show, *show_fun, *pValue;
+        PyObject *plot, *show, *show_fun, *pValue;
+        PyObject *arglist;
     public:
         Plot();
+        ~Plot();
 
-        void draw();
+        int draw();
     };
 }
 
