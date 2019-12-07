@@ -11,8 +11,10 @@ project(cpppyplot
         DESCRIPTION "C++ plot library.")
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
 set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     message(STATUS "USING OPTIONS FOR GNU COMPILER")
@@ -45,7 +47,8 @@ target_sources(cpppyplot PRIVATE
 target_include_directories(cpppyplot PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include/pyplot
-        ${Python3_INCLUDE_DIRS})
+        ${Python3_INCLUDE_DIRS}
+        ${CMAKE_BINARY_DIR})
 target_link_libraries(cpppyplot PRIVATE ${Python3_LIBRARIES})
 
 set_target_properties(cpppyplot PROPERTIES
@@ -54,8 +57,19 @@ set_target_properties(cpppyplot PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    target_compile_definitions(cpppyplot PRIVATE cppplot_EXPORT)
+    target_compile_definitions(cpppyplot PRIVATE cpppyplot_EXPORT)
 endif ()
+
+include(GenerateExportHeader)
+generate_export_header(cpppyplot)
+
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+        SomeProjConfigVersion.cmake
+        VERSION 1.0.0
+        COMPATIBILITY SameMajorVersion
+)
 
 #add_subdirectory(external)
 add_subdirectory(examples)
@@ -70,10 +84,10 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
             DEPENDS ${CMAKE_BINARY_DIR}/examples/cpppyplot.dll cpppyplot
             VERBATIM)
 
-#    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cpppyplot.dll
-#            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cpppyplot>" "$<TARGET_FILE_DIR:test_timer>"
-#            VERBATIM)
-#    add_custom_target(copyddltests ALL
-#            DEPENDS ${CMAKE_BINARY_DIR}/tests/Chronos.dll cpppyplot
-#            VERBATIM)
+    #    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cpppyplot.dll
+    #            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cpppyplot>" "$<TARGET_FILE_DIR:test_timer>"
+    #            VERBATIM)
+    #    add_custom_target(copyddltests ALL
+    #            DEPENDS ${CMAKE_BINARY_DIR}/tests/Chronos.dll cpppyplot
+    #            VERBATIM)
 endif ()

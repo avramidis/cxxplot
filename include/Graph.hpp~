@@ -5,17 +5,24 @@
 // See accompanying file LICENSE.txt
 //---------------------------------------------------------------------------//
 
-#ifndef CPPPYPLOT_DDLDEFINES_HPP
-#define CPPPYPLOT_DDLDEFINES_HPP
+#ifndef CPPPYPLOT_GRAPH_HPP
+#define CPPPYPLOT_GRAPH_HPP
 
-#if defined (_WIN32)
-#if defined(cppplot_EXPORT)
-#define  CPPPLOT_EXPORT __declspec(dllexport)
-#else
-#define  CPPPLOT_EXPORT __declspec(dllimport)
-#endif
-#else
-#define CPPPLOT_EXPORT
-#endif
+#define PY_SSIZE_T_CLEAN
 
-#endif //CPPPYPLOT_DDLDEFINES_HPP
+#include <Python.h>
+#include "cpppyplot_export.h"
+
+namespace cpppyplot {
+
+    class CPPPYPLOT_EXPORT Graph {
+    public:
+        PyObject *matplotlib;
+
+        Graph();
+
+        ~Graph();
+    };
+}
+
+#endif //CPPPYPLOT_GRAPH_HPP

@@ -9,18 +9,22 @@
 #define CPPPYPLOT_PLOT_HPP
 
 #include "Graph.hpp"
-#include "ddldefines.hpp"
 
 namespace cpppyplot {
-    class CPPPLOT_EXPORT Plot : Graph {
+    class CPPPYPLOT_EXPORT Plot : Graph {
     private:
-        PyObject *plot, *show, *show_fun, *pValue;
-        PyObject *arglist;
+        PyObject* plot;
+        PyObject* show;
+        PyObject* show_fun;
+        PyObject* pValue;
+        PyObject* arglist;
+        
     public:
         Plot();
         ~Plot();
 
-        int draw();
+        int
+        draw();
     };
 }
 

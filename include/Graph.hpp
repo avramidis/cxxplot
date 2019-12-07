@@ -11,15 +11,16 @@
 #define PY_SSIZE_T_CLEAN
 
 #include <Python.h>
-#include "ddldefines.hpp"
+#include "cpppyplot_export.h"
 
 namespace cpppyplot {
 
-    class CPPPLOT_EXPORT Graph {
+    class CPPPYPLOT_EXPORT Graph {
     public:
         PyObject *matplotlib;
 
         Graph();
+
         ~Graph();
     };
 }
