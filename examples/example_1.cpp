@@ -13,8 +13,8 @@ int main() {
 
 //    {
         std::cout << "Call plt1" << std::endl;
-        cpppyplot::Plot plt1;
-        plt1.draw();
+        cpppyplot::Graph graph1;
+//        plt1.draw();
 
 //    }
 
