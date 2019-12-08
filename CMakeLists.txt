@@ -31,11 +31,12 @@ endif ()
 add_compile_options("$<$<CONFIG:DEBUG>:${MY_DEBUG_OPTIONS}>")
 add_compile_options("$<$<CONFIG:RELEASE>:${MY_RELEASE_OPTIONS}>")
 
-FIND_PACKAGE(Python3 COMPONENTS Development)
+FIND_PACKAGE(Python3 COMPONENTS Development NumPy)
 if (${Python3_FOUND})
     message(STATUS "PYTHON3 FOUND")
     message(STATUS ${Python3_INCLUDE_DIRS})
     message(STATUS ${Python3_LIBRARIES})
+    message(STATUS ${Python3_NumPy_INCLUDE_DIRS})
 else ()
     message(FATAL_ERROR "PYTHON3 NOT FOUND")
 endif ()
@@ -48,6 +49,7 @@ target_include_directories(cpppyplot PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include/pyplot
         ${Python3_INCLUDE_DIRS}
+        ${Python3_NumPy_INCLUDE_DIRS}
         ${CMAKE_BINARY_DIR})
 target_link_libraries(cpppyplot PRIVATE ${Python3_LIBRARIES})
 

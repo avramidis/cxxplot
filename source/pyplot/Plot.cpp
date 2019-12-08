@@ -6,49 +6,71 @@
 //---------------------------------------------------------------------------//
 
 #include "pyplot/Plot.hpp"
-#include <stdexcept>
 #include <iostream>
+#include <stdexcept>
+#include <numpy/arrayobject.h>
 
 namespace cpppyplot {
-    Plot::Plot() {
-
-
-    }
-
-    Plot::~Plot() {
-        delete plot;
-        delete show;
-        delete show_fun;
-        delete pValue;
-    }
-
-    int Plot::draw() {
-
+    Plot::Plot()
+    {
         plot = PyObject_GetAttrString(matplotlib, "plot");
-        if (plot == NULL)
-            return -2;
+        Py_INCREF(plot);
+        if (plot==NULL) {
+            PyErr_Print();
+            throw std::runtime_error("Could not get plot attribute!\n");
+        }
+    }
+
+    Plot::~Plot()
+    {
+        Py_DECREF(plot);
+//        Py_DECREF(show);
+//        Py_DECREF(show_fun);
+//        Py_DECREF(pValue);
+    }
+
+    int
+    Plot::draw()
+    {
+        if(PyArray_API == NULL)
+        {
+            import_array();
+        }
 
         if (PyCallable_Check(plot)) {
             std::cout << "Callable!" << std::endl;
 
-            int arg = 123;
-            arglist = Py_BuildValue("(1)", arg);
-            PyObject_CallObject(plot, arglist);
-        } else {
-            std::cout << "Not callable!" << std::endl;
+            PyObject* kwargs = PyDict_New();
+
+            std::vector<double> x_vector{1.0, 2.0};
+            std::vector<double> y_vector{2.0, 3.0};
+            PyObject* x = vector_2_numpy(x_vector);
+            PyObject* y = vector_2_numpy(y_vector);
+
+            PyObject* plot_args = PyTuple_New(2);
+            PyTuple_SetItem(plot_args, 0, x);
+            PyTuple_SetItem(plot_args, 1, y);
+
+//            arglist = Py_BuildValue("(i)", 100);
+            PyObject* res = PyObject_Call(plot, plot_args, kwargs);
+            if (res) Py_DECREF(res);
+        }
+        else {
             PyErr_Print();
+            throw std::runtime_error("plot could not be called!\n");
         }
 
         show = PyObject_GetAttrString(matplotlib, "show");
-        if (show == NULL)
+        if (show==NULL)
             return -2;
 
         if (PyCallable_Check(show)) {
             std::cout << "Callable!" << std::endl;
             PyObject_CallObject(show, NULL);
-        } else {
-            std::cout << "Not callable!" << std::endl;
+        }
+        else {
             PyErr_Print();
+            throw std::runtime_error("show could not be called!\n");
         }
 
 

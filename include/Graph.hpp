@@ -11,17 +11,23 @@
 #define PY_SSIZE_T_CLEAN
 
 #include <Python.h>
+#include "numpy/arrayobject.h"
 #include "cpppyplot_export.h"
+#include <vector>
 
 namespace cpppyplot {
 
     class CPPPYPLOT_EXPORT Graph {
     public:
-        PyObject *matplotlib;
+        PyObject* matplotlib;
+        PyObject* numpy;
 
         Graph();
 
         ~Graph();
+
+        PyObject*
+        vector_2_numpy(std::vector<double> &vector);
     };
 }
 

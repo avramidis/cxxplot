@@ -7,10 +7,12 @@
 
 #include "Graph.hpp"
 #include <iostream>
+#include <stdexcept>
 
 namespace cpppyplot {
     Graph::Graph()
     {
+        Py_SetProgramName(reinterpret_cast<const wchar_t*>("cxxpyplot"));
         Py_Initialize();
         PyRun_SimpleString("import sys\n"
                            "sys.argv.append('')\n"
@@ -19,19 +21,42 @@ namespace cpppyplot {
         matplotlib = PyImport_ImportModule("matplotlib.pyplot");
         Py_INCREF(matplotlib);
         if (matplotlib==NULL) {
-            std::cout << "Error!" << std::endl;
+            PyErr_Print();
+            throw std::runtime_error("matplotlib.pyplot could not be imported!\n");
         }
 
-        std::cout << "Graph init done!" << std::endl;
+        numpy = PyImport_ImportModule("numpy");
+        Py_INCREF(numpy);
+        if (numpy==NULL) {
+            PyErr_Print();
+            throw std::runtime_error("numpy could not be imported!\n");
+        }
     }
 
     Graph::~Graph()
     {
         Py_DECREF(matplotlib);
         if (Py_FinalizeEx()<0) {
-            std::cout << "Error!" << std::endl;
+            PyErr_Print();
+            std::cout << "Warning: Python interpreter could not be finalized!" << std::endl;
         }
+    }
 
-        std::cout << "Graph end done!" << std::endl;
+    PyObject*
+    Graph::vector_2_numpy(std::vector<double> &vector)
+    {
+        import_array();
+        std::cout << "Size of vector: " << (vector.size()) << std::endl;
+
+        npy_intp dims = vector.size();
+
+        // Convert it to a NumPy array.
+        PyObject* p_array = PyArray_SimpleNewFromData(
+                1, &dims, NPY_DOUBLE, (void*)(vector.data()));
+        if (!p_array)
+            std::cout << "Error!" << std::endl;
+//        PyArrayObject* np_arr = reinterpret_cast<PyArrayObject*>(p_array);
+
+        return p_array;
     }
 }

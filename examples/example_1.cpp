@@ -8,15 +8,19 @@
 #include <iostream>
 #include "pyplot/Plot.hpp"
 
-int main() {
+int
+main()
+{
     std::cout << "Running example_1" << std::endl;
 
-//    {
-        std::cout << "Call plt1" << std::endl;
-        cpppyplot::Graph graph1;
-//        plt1.draw();
+    std::cout << "Call plt1" << std::endl;
+//    cpppyplot::Graph graph_1;
+//    std::vector<double> vector{1 ,2, 3, 4};
+//    graph_1.vector_2_numpy(vector);
 
-//    }
+    cpppyplot::Plot plot_1;
+    plot_1.draw();
+
 
 //    {
 //        std::cout << "Call plt2" << std::endl;
