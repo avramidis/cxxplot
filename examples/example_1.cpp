@@ -19,7 +19,15 @@ main()
 //    graph_1.vector_2_numpy(vector);
 
     cpppyplot::Plot plot_1;
-    plot_1.draw();
+
+    std::vector<double> x{1.0, 2.0};
+    std::vector<double> y{2.0, 3.0};
+
+    std::vector<std::pair<std::string, std::string>> args;
+    args.emplace_back("color", "r");
+    args.emplace_back("marker", "o");
+
+    plot_1.draw(x, y, args);
 
 
 //    {

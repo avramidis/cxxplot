@@ -9,6 +9,7 @@
 #define CPPPYPLOT_PLOT_HPP
 
 #include "Graph.hpp"
+#include <string>
 
 namespace cpppyplot {
     class CPPPYPLOT_EXPORT Plot : Graph {
@@ -24,7 +25,7 @@ namespace cpppyplot {
         ~Plot();
 
         int
-        draw();
+        draw(std::vector<double> &x, std::vector<double> &y, std::vector<std::pair<std::string, std::string>> &args);
     };
 }
 

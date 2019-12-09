@@ -30,28 +30,26 @@ namespace cpppyplot {
     }
 
     int
-    Plot::draw()
+    Plot::draw(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args)
     {
-        if(PyArray_API == NULL)
-        {
+        if (PyArray_API==NULL) {
             import_array();
         }
 
         if (PyCallable_Check(plot)) {
-            std::cout << "Callable!" << std::endl;
 
             PyObject* kwargs = PyDict_New();
+            for (auto& v:args) {
+                PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
+            }
 
-            std::vector<double> x_vector{1.0, 2.0};
-            std::vector<double> y_vector{2.0, 3.0};
-            PyObject* x = vector_2_numpy(x_vector);
-            PyObject* y = vector_2_numpy(y_vector);
+            PyObject* x_py = vector_2_numpy(x);
+            PyObject* y_py = vector_2_numpy(y);
 
             PyObject* plot_args = PyTuple_New(2);
-            PyTuple_SetItem(plot_args, 0, x);
-            PyTuple_SetItem(plot_args, 1, y);
+            PyTuple_SetItem(plot_args, 0, x_py);
+            PyTuple_SetItem(plot_args, 1, y_py);
 
-//            arglist = Py_BuildValue("(i)", 100);
             PyObject* res = PyObject_Call(plot, plot_args, kwargs);
             if (res) Py_DECREF(res);
         }
@@ -65,7 +63,6 @@ namespace cpppyplot {
             return -2;
 
         if (PyCallable_Check(show)) {
-            std::cout << "Callable!" << std::endl;
             PyObject_CallObject(show, NULL);
         }
         else {

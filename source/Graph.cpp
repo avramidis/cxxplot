@@ -46,7 +46,6 @@ namespace cpppyplot {
     Graph::vector_2_numpy(std::vector<double> &vector)
     {
         import_array();
-        std::cout << "Size of vector: " << (vector.size()) << std::endl;
 
         npy_intp dims = vector.size();
 
@@ -55,7 +54,6 @@ namespace cpppyplot {
                 1, &dims, NPY_DOUBLE, (void*)(vector.data()));
         if (!p_array)
             std::cout << "Error!" << std::endl;
-//        PyArrayObject* np_arr = reinterpret_cast<PyArrayObject*>(p_array);
 
         return p_array;
     }
