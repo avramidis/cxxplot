@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 3.15.3)
 
-project(cpppyplot
+project(cxxplot
         VERSION 1.00
         DESCRIPTION "C++ plot library.")
 
@@ -41,29 +41,29 @@ else ()
     message(FATAL_ERROR "PYTHON3 NOT FOUND")
 endif ()
 
-add_library(cpppyplot SHARED)
-target_sources(cpppyplot PRIVATE
+add_library(cxxplot SHARED)
+target_sources(cxxplot PRIVATE
         source/Graph.cpp
         source/pyplot/Plot.cpp)
-target_include_directories(cpppyplot PRIVATE
+target_include_directories(cxxplot PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include/pyplot
         ${Python3_INCLUDE_DIRS}
         ${Python3_NumPy_INCLUDE_DIRS}
         ${CMAKE_BINARY_DIR})
-target_link_libraries(cpppyplot PRIVATE ${Python3_LIBRARIES})
+target_link_libraries(cxxplot PRIVATE ${Python3_LIBRARIES})
 
-set_target_properties(cpppyplot PROPERTIES
+set_target_properties(cxxplot PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    target_compile_definitions(cpppyplot PRIVATE cpppyplot_EXPORT)
+    target_compile_definitions(cxxplot PRIVATE cxxplot_EXPORT)
 endif ()
 
 include(GenerateExportHeader)
-generate_export_header(cpppyplot)
+generate_export_header(cxxplot)
 
 include(CMakePackageConfigHelpers)
 
@@ -79,17 +79,17 @@ add_subdirectory(examples)
 #add_subdirectory(tests)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cpppyplot.dll
-            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cpppyplot>" "$<TARGET_FILE_DIR:example_1>"
+    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cxxplot.dll
+            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:example_1>"
             VERBATIM)
     add_custom_target(copyddlexamples ALL
-            DEPENDS ${CMAKE_BINARY_DIR}/examples/cpppyplot.dll cpppyplot
+            DEPENDS ${CMAKE_BINARY_DIR}/examples/cxxplot.dll cxxplot
             VERBATIM)
 
-    #    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cpppyplot.dll
-    #            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cpppyplot>" "$<TARGET_FILE_DIR:test_timer>"
+    #    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cxxplot.dll
+    #            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:test_timer>"
     #            VERBATIM)
     #    add_custom_target(copyddltests ALL
-    #            DEPENDS ${CMAKE_BINARY_DIR}/tests/Chronos.dll cpppyplot
+    #            DEPENDS ${CMAKE_BINARY_DIR}/tests/cxxplot.dll cxxplot
     #            VERBATIM)
 endif ()

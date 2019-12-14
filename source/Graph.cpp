@@ -9,7 +9,7 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace cpppyplot {
+namespace cxxplot {
     Graph::Graph()
     {
         Py_SetProgramName(reinterpret_cast<const wchar_t*>("cxxpyplot"));

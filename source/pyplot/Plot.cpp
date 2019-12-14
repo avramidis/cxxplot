@@ -8,7 +8,7 @@
 #include "pyplot/Plot.hpp"
 #include <stdexcept>
 
-namespace cpppyplot {
+namespace cxxplot {
     Plot::Plot(std::vector<double>& x, std::vector<double>& y)
     {
         initialize();

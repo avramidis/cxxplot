@@ -14,7 +14,7 @@ target_include_directories(example_1 PRIVATE
         ${CMAKE_BINARY_DIR}
         ${Python3_NumPy_INCLUDE_DIRS})
 target_link_libraries(example_1 PRIVATE
-        cpppyplot
+        cxxplot
         ${Python3_LIBRARIES})
 
 add_executable(example_2)
@@ -25,7 +25,7 @@ target_include_directories(example_2 PRIVATE
         ${CMAKE_BINARY_DIR}
         ${Python3_NumPy_INCLUDE_DIRS})
 target_link_libraries(example_2 PRIVATE
-        cpppyplot
+        cxxplot
         ${Python3_LIBRARIES})
 
 add_executable(example_3)
@@ -36,7 +36,7 @@ target_include_directories(example_3 PRIVATE
         ${CMAKE_BINARY_DIR}
         ${Python3_NumPy_INCLUDE_DIRS})
 target_link_libraries(example_3 PRIVATE
-        cpppyplot
+        cxxplot
         ${Python3_LIBRARIES})
 
 set_target_properties(example_1 example_2 example_3 PROPERTIES

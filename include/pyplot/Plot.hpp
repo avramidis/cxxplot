@@ -11,25 +11,27 @@
 #include "Graph.hpp"
 #include <string>
 
-namespace cpppyplot {
-    class CPPPYPLOT_EXPORT Plot : Graph {
+namespace cxxplot {
+    class CXXPLOT_EXPORT Plot : Graph {
     private:
         PyObject* plot;
         PyObject* show;
 
     public:
-        Plot(std::vector<double>& x, std::vector<double>& y);
-        Plot(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args);
+        explicit Plot(std::vector<double>& x, std::vector<double>& y);
+        explicit Plot(std::vector<double>& x, std::vector<double>& y,
+                std::vector<std::pair<std::string, std::string>>& args);
         ~Plot();
 
         void
         initialize();
 
         void
-        draw(std::vector<double>& x, std::vector<double>& y);
+        draw(std::vector<double>& x, std::vector<double>& y) override;
 
         void
-        draw(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args);
+        draw(std::vector<double>& x, std::vector<double>& y,
+                std::vector<std::pair<std::string, std::string>>& args) override;
     };
 }
 

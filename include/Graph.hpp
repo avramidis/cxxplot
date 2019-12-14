@@ -12,10 +12,11 @@
 
 #include <Python.h>
 #include "numpy/arrayobject.h"
-#include "cpppyplot_export.h"
+#include "cxxplot_export.h"
 #include <vector>
+#include <string>
 
-namespace cpppyplot {
+namespace cxxplot {
 
     class Graph {
     public:
@@ -26,8 +27,15 @@ namespace cpppyplot {
 
         ~Graph();
 
+        virtual void
+        draw(std::vector<double>& x, std::vector<double>& y) = 0;
+
+        virtual void
+        draw(std::vector<double>& x, std::vector<double>& y,
+                std::vector<std::pair<std::string, std::string>>& args) = 0;
+
         PyObject*
-        vector_2_numpy(std::vector<double> &vector);
+        vector_2_numpy(std::vector<double>& vector);
     };
 }
 
