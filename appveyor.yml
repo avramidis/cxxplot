@@ -1,0 +1,18 @@
+image: Visual Studio 2019
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python38-x64"
+
+install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python -m pip install --upgrade pip
+
+build_script:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - pip install numpy matplotlib
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build . --target ALL_BUILD --config Release
