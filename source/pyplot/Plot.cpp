@@ -6,12 +6,29 @@
 //---------------------------------------------------------------------------//
 
 #include "pyplot/Plot.hpp"
-#include <iostream>
 #include <stdexcept>
-#include <numpy/arrayobject.h>
 
 namespace cpppyplot {
-    Plot::Plot()
+    Plot::Plot(std::vector<double>& x, std::vector<double>& y)
+    {
+        initialize();
+        draw(x, y);
+    }
+
+    Plot::Plot(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args)
+    {
+        initialize();
+        draw(x, y, args);
+    }
+
+    Plot::~Plot()
+    {
+        Py_DECREF(plot);
+//        Py_DECREF(show);
+    }
+
+    void
+    Plot::initialize()
     {
         plot = PyObject_GetAttrString(matplotlib, "plot");
         Py_INCREF(plot);
@@ -21,21 +38,41 @@ namespace cpppyplot {
         }
     }
 
-    Plot::~Plot()
+    void
+    Plot::draw(std::vector<double>& x, std::vector<double>& y)
     {
-        Py_DECREF(plot);
-//        Py_DECREF(show);
-//        Py_DECREF(show_fun);
-//        Py_DECREF(pValue);
-    }
+        if (PyCallable_Check(plot)) {
+            PyObject* x_py = vector_2_numpy(x);
+            PyObject* y_py = vector_2_numpy(y);
 
-    int
-    Plot::draw(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args)
-    {
-        if (PyArray_API==NULL) {
-            import_array();
+            PyObject* plot_args = PyTuple_New(2);
+            PyTuple_SetItem(plot_args, 0, x_py);
+            PyTuple_SetItem(plot_args, 1, y_py);
+
+            PyObject* res = PyObject_CallObject(plot, plot_args);
+            if (res) Py_DECREF(res);
+        }
+        else {
+            PyErr_Print();
+            throw std::runtime_error("plot could not be called!\n");
         }
 
+        show = PyObject_GetAttrString(matplotlib, "show");
+        if (show==NULL)
+            throw std::runtime_error("show string not be accessed!\n");
+
+        if (PyCallable_Check(show)) {
+            PyObject_CallObject(show, NULL);
+        }
+        else {
+            PyErr_Print();
+            throw std::runtime_error("show could not be called!\n");
+        }
+    }
+
+    void
+    Plot::draw(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args)
+    {
         if (PyCallable_Check(plot)) {
 
             PyObject* kwargs = PyDict_New();
@@ -60,7 +97,7 @@ namespace cpppyplot {
 
         show = PyObject_GetAttrString(matplotlib, "show");
         if (show==NULL)
-            return -2;
+            throw std::runtime_error("show string not be accessed!\n");
 
         if (PyCallable_Check(show)) {
             PyObject_CallObject(show, NULL);
@@ -69,118 +106,5 @@ namespace cpppyplot {
             PyErr_Print();
             throw std::runtime_error("show could not be called!\n");
         }
-
-
-//    show = PyObject_Call(plot, NULL, NULL);
-//    if (show == NULL)
-//        return -2;
-
-//    show_fun = PyObject_Call(show, NULL, NULL);
-//
-//    if (show_fun != NULL) {
-//       std::cout << "Worked!" << std::endl;
-//    }
-
-//        Py_Initialize();
-//        PyRun_SimpleString("import sys\n"
-//                           "sys.argv.append('')\n"
-//                           "print(sys.argv)\n");
-//
-//        matplotlib = PyImport_ImportModule("matplotlib.pyplot");
-//        std::cout << matplotlib->ob_type << std::endl;
-//        if (matplotlib == NULL) {
-//            throw std::runtime_error("Error: Cannot import matplotlib.pyplot!\n");
-//        }
-//
-//        plot = PyObject_GetAttrString(matplotlib, "plot");
-//        if (plot == NULL) {
-//            throw std::runtime_error("Error: Cannot import matplotlib!\n");
-//        }
-//
-//        if (PyCallable_Check(plot)) {
-//            PyObject_CallObject(plot, NULL);
-//        } else {
-//            PyErr_Print();
-//            throw std::runtime_error("Error: matplotlib.pyplot.plot is not callable!\n");
-//        }
-//
-//        show = PyObject_GetAttrString(matplotlib, "show");
-//        if (show == NULL) {
-//            throw std::runtime_error("Error: Cannot import show!\n");
-//        }
-//
-//        if (PyCallable_Check(show)) {
-//            std::cout << "Callable!" << std::endl;
-//            PyObject_CallObject(show, NULL);
-//            throw std::runtime_error("Error: show is not callable!\n");
-//        } else {
-//            std::cout << "Not callable!" << std::endl;
-//            PyErr_Print();
-//        }
-//
-////        if (Py_FinalizeEx() < 0) {
-////            std::cout << "Cannot Py_FinalizeEx()!" << std::endl;
-//////            throw std::runtime_error("Error: Cannot finalize Python interpreter!\n");
-////        }
-//
-//        if (Py_FinalizeEx() < 0) {
-//
-//        }
-
-
-
-
-//        Py_Initialize();
-//        PyRun_SimpleString("import sys\n"
-//                           "sys.argv.append('')\n"
-//                           "print(sys.argv)\n");
-//
-//        matplotlib = PyImport_ImportModule("matplotlib.pyplot");
-//        if (matplotlib == NULL) {
-//            std::cout << "Problem" << std::endl;
-//        }
-//
-//        plot = PyObject_GetAttrString(matplotlib, "plot");
-//        if (plot == NULL) {
-//            std::cout << "Problem" << std::endl;
-//        }
-//
-//        if (PyCallable_Check(plot))
-//        {
-//            std::cout << "plot is Callable!" << std::endl;
-//            PyObject * result = PyObject_CallObject(plot, NULL);
-//            if (result == NULL) {
-//                std::cout << "failed to call plot!" << std::endl;
-//            }
-//        } else
-//        {
-//            std::cout << "plot is Not callable!" << std::endl;
-//            PyErr_Print();
-//        }
-//
-//        show = PyObject_GetAttrString(matplotlib, "show");
-//        if (show == NULL)
-//
-//
-//        if (PyCallable_Check(show))
-//        {
-//            std::cout << "show is Callable!" << std::endl;
-//            PyObject_CallObject(show, NULL);
-//        } else
-//        {
-//            std::cout << "show is Not callable!" << std::endl;
-//            PyErr_Print();
-//        }
-
-
-//    show = PyObject_Call(plot, NULL, NULL);
-//    if (show == NULL)
-//        return -2;
-
-//    show_fun = PyObject_Call(show, NULL, NULL);
-//
-//    if (show_fun != NULL) {
-//       std::cout << "Worked!" << std::endl;
-//    }
     }
 }

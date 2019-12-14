@@ -43,7 +43,7 @@ namespace cpppyplot {
     }
 
     PyObject*
-    Graph::vector_2_numpy(std::vector<double> &vector)
+    Graph::vector_2_numpy(std::vector<double>& vector)
     {
         import_array();
 
@@ -51,7 +51,7 @@ namespace cpppyplot {
 
         // Convert it to a NumPy array.
         PyObject* p_array = PyArray_SimpleNewFromData(
-                1, &dims, NPY_DOUBLE, (void*)(vector.data()));
+                1, &dims, NPY_DOUBLE, (void*) (vector.data()));
         if (!p_array)
             std::cout << "Error!" << std::endl;
 

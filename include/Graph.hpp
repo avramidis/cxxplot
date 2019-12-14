@@ -17,7 +17,7 @@
 
 namespace cpppyplot {
 
-    class CPPPYPLOT_EXPORT Graph {
+    class Graph {
     public:
         PyObject* matplotlib;
         PyObject* numpy;
@@ -31,4 +31,4 @@ namespace cpppyplot {
     };
 }
 
-#endif //CPPPYPLOT_GRAPH_HPP
+#endif

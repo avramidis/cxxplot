@@ -16,17 +16,21 @@ namespace cpppyplot {
     private:
         PyObject* plot;
         PyObject* show;
-        PyObject* show_fun;
-        PyObject* pValue;
-        PyObject* arglist;
-        
+
     public:
-        Plot();
+        Plot(std::vector<double>& x, std::vector<double>& y);
+        Plot(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args);
         ~Plot();
 
-        int
-        draw(std::vector<double> &x, std::vector<double> &y, std::vector<std::pair<std::string, std::string>> &args);
+        void
+        initialize();
+
+        void
+        draw(std::vector<double>& x, std::vector<double>& y);
+
+        void
+        draw(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args);
     };
 }
 
-#endif //CPPPYPLOT_PLOT_HPP
+#endif
