@@ -47,3 +47,9 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/include
         PERMISSIONS OWNER_READ OWNER_WRITE
         GROUP_READ
         WORLD_READ)
+
+install(EXPORT cxxplot
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cxxplot
+        NAMESPACE cxxplot::
+        FILE cxxplotConfig.cmake
+        )
