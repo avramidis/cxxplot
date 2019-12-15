@@ -20,7 +20,7 @@ main(int argc, char *argv[]) {
                        "sys.argv.append('')\n"
                        "print(sys.argv)\n");
 
-    matplotlib = PyImport_ImportModule("matplotlib.pyplot");
+    matplotlib = PyImport_ImportModule("matplotlib_pyplot.pyplot");
     if (matplotlib == NULL) {
         return -1;
     }

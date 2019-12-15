@@ -24,13 +24,12 @@ namespace cxxplot {
     Plot::~Plot()
     {
         Py_DECREF(plot);
-//        Py_DECREF(show);
     }
 
     void
     Plot::initialize()
     {
-        plot = PyObject_GetAttrString(matplotlib, "plot");
+        plot = PyObject_GetAttrString(matplotlib_pyplot, "plot");
         Py_INCREF(plot);
         if (plot==NULL) {
             PyErr_Print();
@@ -55,18 +54,6 @@ namespace cxxplot {
         else {
             PyErr_Print();
             throw std::runtime_error("plot could not be called!\n");
-        }
-
-        show = PyObject_GetAttrString(matplotlib, "show");
-        if (show==NULL)
-            throw std::runtime_error("show string not be accessed!\n");
-
-        if (PyCallable_Check(show)) {
-            PyObject_CallObject(show, NULL);
-        }
-        else {
-            PyErr_Print();
-            throw std::runtime_error("show could not be called!\n");
         }
     }
 
@@ -94,8 +81,12 @@ namespace cxxplot {
             PyErr_Print();
             throw std::runtime_error("plot could not be called!\n");
         }
+    }
 
-        show = PyObject_GetAttrString(matplotlib, "show");
+    void
+    Plot::show_plot()
+    {
+        show = PyObject_GetAttrString(matplotlib_pyplot, "show");
         if (show==NULL)
             throw std::runtime_error("show string not be accessed!\n");
 
@@ -105,6 +96,52 @@ namespace cxxplot {
         else {
             PyErr_Print();
             throw std::runtime_error("show could not be called!\n");
+        }
+    }
+
+    void
+    Plot::set_xlabel(std::string const& label, std::map<std::string, std::string> const& args)
+    {
+        xlabel = PyObject_GetAttrString(matplotlib_pyplot, "xlabel");
+        if (PyCallable_Check(xlabel)) {
+            PyObject* py_label = PyUnicode_FromString(label.c_str());
+
+            PyObject* label_args = PyTuple_New(1);
+            PyTuple_SetItem(label_args, 0, py_label);
+
+            PyObject* kwargs = PyDict_New();
+            for (auto const& v:args) {
+                PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
+            }
+
+            PyObject_Call(xlabel, label_args, kwargs);
+        }
+        else {
+            PyErr_Print();
+            throw std::runtime_error("xlabel could not be called!\n");
+        }
+    }
+
+    void
+    Plot::set_ylabel(std::string const& label, std::map<std::string, std::string> const& args)
+    {
+        ylabel = PyObject_GetAttrString(matplotlib_pyplot, "ylabel");
+        if (PyCallable_Check(ylabel)) {
+            PyObject* py_label = PyUnicode_FromString(label.c_str());
+
+            PyObject* label_args = PyTuple_New(1);
+            PyTuple_SetItem(label_args, 0, py_label);
+
+            PyObject* kwargs = PyDict_New();
+            for (auto const& v:args) {
+                PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
+            }
+
+            PyObject_Call(ylabel, label_args, kwargs);
+        }
+        else {
+            PyErr_Print();
+            throw std::runtime_error("ylabel could not be called!\n");
         }
     }
 }

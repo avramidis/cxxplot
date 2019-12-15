@@ -18,9 +18,9 @@ namespace cxxplot {
                            "sys.argv.append('')\n"
                            "print(sys.argv)\n");
 
-        matplotlib = PyImport_ImportModule("matplotlib.pyplot");
-        Py_INCREF(matplotlib);
-        if (matplotlib==NULL) {
+        matplotlib_pyplot = PyImport_ImportModule("matplotlib.pyplot");
+        Py_INCREF(matplotlib_pyplot);
+        if (matplotlib_pyplot==NULL) {
             PyErr_Print();
             throw std::runtime_error("matplotlib.pyplot could not be imported!\n");
         }
@@ -35,7 +35,7 @@ namespace cxxplot {
 
     Graph::~Graph()
     {
-        Py_DECREF(matplotlib);
+        Py_DECREF(matplotlib_pyplot);
         if (Py_FinalizeEx()<0) {
             PyErr_Print();
             std::cout << "Warning: Python interpreter could not be finalized!" << std::endl;

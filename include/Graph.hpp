@@ -20,7 +20,7 @@ namespace cxxplot {
 
     class Graph {
     public:
-        PyObject* matplotlib;
+        PyObject* matplotlib_pyplot;
         PyObject* numpy;
 
         Graph();

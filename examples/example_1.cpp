@@ -21,6 +21,9 @@ main()
     args.emplace_back("marker", "o");
 
     cxxplot::Plot plot_1(x, y, args);
+    plot_1.set_xlabel("x label");
+    plot_1.set_ylabel("y label");
+    plot_1.show_plot();
 
     return 0;
 }

@@ -10,12 +10,15 @@
 
 #include "Graph.hpp"
 #include <string>
+#include <map>
 
 namespace cxxplot {
     class CXXPLOT_EXPORT Plot : Graph {
     private:
         PyObject* plot;
         PyObject* show;
+        PyObject* xlabel;
+        PyObject* ylabel;
 
     public:
         explicit Plot(std::vector<double>& x, std::vector<double>& y);
@@ -32,6 +35,15 @@ namespace cxxplot {
         void
         draw(std::vector<double>& x, std::vector<double>& y,
                 std::vector<std::pair<std::string, std::string>>& args) override;
+
+        void
+        show_plot();
+
+        void
+        set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
+
+        void
+        set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
     };
 }
 
