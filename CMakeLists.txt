@@ -38,11 +38,13 @@ generate_export_header(cxxplot)
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-        SomeProjConfigVersion.cmake
+        cxxplotConfigVersion.cmake
         VERSION 1.0.0
         COMPATIBILITY SameMajorVersion
 )
 
 add_subdirectory(examples)
 #add_subdirectory(tests)
+
+
 
