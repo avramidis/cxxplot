@@ -12,7 +12,6 @@
 namespace cxxplot {
 	Graph::Graph()
 	{
-		Py_SetProgramName(reinterpret_cast<const wchar_t*>("cxxplot"));
 		Py_Initialize();
 		PyRun_SimpleString("import sys\n"
 						   "sys.argv.append('')\n"

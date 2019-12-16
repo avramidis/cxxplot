@@ -18,7 +18,7 @@ namespace cxxplot {
 	Plot::Plot(std::vector<double>& x, std::vector<double>& y, std::vector<std::pair<std::string, std::string>>& args)
 	{
 		initialize();
-		//draw(x, y, args);
+		draw(x, y, args);
 	}
 
 	Plot::~Plot()
