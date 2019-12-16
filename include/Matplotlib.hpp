@@ -18,21 +18,14 @@
 
 namespace cxxplot {
 
-    class Graph {
+    class Matplotlib {
     public:
         PyObject* matplotlib_pyplot;
         PyObject* numpy;
 
-        Graph();
+        Matplotlib();
 
-        ~Graph();
-
-        virtual void
-        draw(std::vector<double>& x, std::vector<double>& y) = 0;
-
-        virtual void
-        draw(std::vector<double>& x, std::vector<double>& y,
-                std::vector<std::pair<std::string, std::string>>& args) = 0;
+        ~Matplotlib();
 
         PyObject*
         vector_2_numpy(std::vector<double>& vector);

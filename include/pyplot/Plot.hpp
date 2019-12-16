@@ -8,7 +8,7 @@
 #ifndef CPPPYPLOT_PLOT_HPP
 #define CPPPYPLOT_PLOT_HPP
 
-#include "Graph.hpp"
+#include "Matplotlib.hpp"
 #include "Pyplot.hpp"
 #include <string>
 #include <map>

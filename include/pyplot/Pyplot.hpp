@@ -9,13 +9,14 @@
 #define CXXPLOT_PYPLOT_HPP
 
 #include "Python.h"
-#include "Graph.hpp"
+#include "Matplotlib.hpp"
 #include "pyplot/Pyplot.hpp"
 #include <map>
 #include <string>
+#include <stdexcept>
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Pyplot : public Graph {
+	class CXXPLOT_EXPORT Pyplot : public Matplotlib {
 	public:
 		PyObject* xlabel;
 		PyObject* ylabel;

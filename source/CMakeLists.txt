@@ -1,6 +1,6 @@
 add_library(cxxplot SHARED)
 target_sources(cxxplot PRIVATE
-        ${CMAKE_SOURCE_DIR}/source/Graph.cpp
+        ${CMAKE_SOURCE_DIR}/source/Matplotlib.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Plot.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp)
 target_include_directories(cxxplot PRIVATE

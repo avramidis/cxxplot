@@ -5,12 +5,12 @@
 // See accompanying file LICENSE.txt
 //---------------------------------------------------------------------------//
 
-#include "Graph.hpp"
+#include "Matplotlib.hpp"
 #include <iostream>
 #include <stdexcept>
 
 namespace cxxplot {
-	Graph::Graph()
+	Matplotlib::Matplotlib()
 	{
 		Py_Initialize();
 		PyRun_SimpleString("import sys\n"
@@ -34,7 +34,7 @@ namespace cxxplot {
 		}
 	}
 
-	Graph::~Graph()
+	Matplotlib::~Matplotlib()
 	{
 		Py_DECREF(matplotlib_pyplot);
 		if (Py_FinalizeEx()<0) {
@@ -44,7 +44,7 @@ namespace cxxplot {
 	}
 
 	PyObject*
-	Graph::vector_2_numpy(std::vector<double>& vector)
+	Matplotlib::vector_2_numpy(std::vector<double>& vector)
 	{
 		import_array();
 
