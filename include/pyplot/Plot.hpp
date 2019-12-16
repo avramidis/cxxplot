@@ -17,7 +17,6 @@ namespace cxxplot {
 	class CXXPLOT_EXPORT Plot : public Pyplot {
 	private:
 		PyObject* plot;
-		PyObject* show;
 
 	public:
 		explicit Plot(std::vector<double>& x, std::vector<double>& y);
@@ -25,6 +24,7 @@ namespace cxxplot {
 				std::vector<std::pair<std::string, std::string>>& args);
 		~Plot();
 
+	private:
 		void
 		initialize();
 
@@ -35,8 +35,6 @@ namespace cxxplot {
 		draw(std::vector<double>& x, std::vector<double>& y,
 				std::vector<std::pair<std::string, std::string>>& args);
 
-		void
-		show_plot();
 	};
 }
 

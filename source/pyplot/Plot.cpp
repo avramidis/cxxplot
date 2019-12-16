@@ -83,20 +83,5 @@ namespace cxxplot {
 		}
 	}
 
-	void
-	Plot::show_plot()
-	{
-		show = PyObject_GetAttrString(matplotlib_pyplot, "show");
-		if (show==NULL)
-			throw std::runtime_error("show string not be accessed!\n");
 
-		if (PyCallable_Check(show)) {
-			PyObject* res = PyObject_CallObject(show, NULL);
-			if (res) Py_DECREF(res);
-		}
-		else {
-			PyErr_Print();
-			throw std::runtime_error("show could not be called!\n");
-		}
-	}
 }
