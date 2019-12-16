@@ -9,42 +9,35 @@
 #define CPPPYPLOT_PLOT_HPP
 
 #include "Graph.hpp"
+#include "Pyplot.hpp"
 #include <string>
 #include <map>
 
 namespace cxxplot {
-    class CXXPLOT_EXPORT Plot : Graph {
-    private:
-        PyObject* plot;
-        PyObject* show;
-        PyObject* xlabel;
-        PyObject* ylabel;
+	class CXXPLOT_EXPORT Plot : public Pyplot {
+	private:
+		PyObject* plot;
+		PyObject* show;
 
-    public:
-        explicit Plot(std::vector<double>& x, std::vector<double>& y);
-        explicit Plot(std::vector<double>& x, std::vector<double>& y,
-                std::vector<std::pair<std::string, std::string>>& args);
-        ~Plot();
+	public:
+		explicit Plot(std::vector<double>& x, std::vector<double>& y);
+		explicit Plot(std::vector<double>& x, std::vector<double>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
+		~Plot();
 
-        void
-        initialize();
+		void
+		initialize();
 
-        void
-        draw(std::vector<double>& x, std::vector<double>& y) override;
+		void
+		draw(std::vector<double>& x, std::vector<double>& y);
 
-        void
-        draw(std::vector<double>& x, std::vector<double>& y,
-                std::vector<std::pair<std::string, std::string>>& args) override;
+		void
+		draw(std::vector<double>& x, std::vector<double>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
 
-        void
-        show_plot();
-
-        void
-        set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
-
-        void
-        set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
-    };
+		void
+		show_plot();
+	};
 }
 
 #endif
