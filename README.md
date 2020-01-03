@@ -2,7 +2,7 @@ cpppyplot
 ==============
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
-![GitHub](https://img.shields.io/github/license/avramidis/cxxplot)
+[![license: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/avramidis/cxxplot/blob/master/LICENSE)
 
 branch | status 
 | :--- | ---: |
