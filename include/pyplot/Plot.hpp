@@ -8,25 +8,34 @@
 #ifndef CPPPYPLOT_PLOT_HPP
 #define CPPPYPLOT_PLOT_HPP
 
-#include "Graph.hpp"
+#include "Matplotlib.hpp"
+#include "Pyplot.hpp"
 #include <string>
+#include <map>
 
-namespace cpppyplot {
-    class CPPPYPLOT_EXPORT Plot : Graph {
-    private:
-        PyObject* plot;
-        PyObject* show;
-        PyObject* show_fun;
-        PyObject* pValue;
-        PyObject* arglist;
-        
-    public:
-        Plot();
-        ~Plot();
+namespace cxxplot {
+	class CXXPLOT_EXPORT Plot : public Pyplot {
+	private:
+		PyObject* plot;
 
-        int
-        draw(std::vector<double> &x, std::vector<double> &y, std::vector<std::pair<std::string, std::string>> &args);
-    };
+	public:
+		explicit Plot(std::vector<double>& x, std::vector<double>& y);
+		explicit Plot(std::vector<double>& x, std::vector<double>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
+		~Plot();
+
+	private:
+		void
+		initialize();
+
+		void
+		draw(std::vector<double>& x, std::vector<double>& y);
+
+		void
+		draw(std::vector<double>& x, std::vector<double>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
+
+	};
 }
 
-#endif //CPPPYPLOT_PLOT_HPP
+#endif

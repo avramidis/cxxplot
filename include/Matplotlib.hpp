@@ -12,23 +12,24 @@
 
 #include <Python.h>
 #include "numpy/arrayobject.h"
-#include "cpppyplot_export.h"
+#include "cxxplot_export.h"
 #include <vector>
+#include <string>
 
-namespace cpppyplot {
+namespace cxxplot {
 
-    class CPPPYPLOT_EXPORT Graph {
+    class Matplotlib {
     public:
-        PyObject* matplotlib;
+        PyObject* matplotlib_pyplot;
         PyObject* numpy;
 
-        Graph();
+        Matplotlib();
 
-        ~Graph();
+        ~Matplotlib();
 
         PyObject*
-        vector_2_numpy(std::vector<double> &vector);
+        vector_2_numpy(std::vector<double>& vector);
     };
 }
 
-#endif //CPPPYPLOT_GRAPH_HPP
+#endif
