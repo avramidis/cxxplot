@@ -37,14 +37,21 @@ endif ()
 include(GNUInstallDirs)
 install(TARGETS cxxplot
         EXPORT cxxplot
+        PRIVATE_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT cxxplot_RunTime
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT cxxplot_RunTime
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT cxxplot_RunTime NAMELINK_COMPONENT cxxplot_Development
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT cxxplot_Development)
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include
-        DESTINATION .
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+        DESTINATION ./include/cxxplot
         FILES_MATCHING
         PATTERN *.hpp
+        PERMISSIONS OWNER_READ OWNER_WRITE
+        GROUP_READ
+        WORLD_READ)
+
+install(FILES ${CMAKE_BINARY_DIR}/cxxplot_export.h
+        DESTINATION ./include/cxxplot
         PERMISSIONS OWNER_READ OWNER_WRITE
         GROUP_READ
         WORLD_READ)
