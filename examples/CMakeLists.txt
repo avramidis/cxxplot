@@ -5,9 +5,9 @@
 #---------------------------------------------------------------------------//
 
 cmake_minimum_required(VERSION 3.15.3)
-add_executable(example_1)
-target_sources(example_1 PRIVATE example_1.cpp)
-target_link_libraries(example_1 PRIVATE cxxplot Python3::Python Python3::NumPy)
+add_executable(plot_1)
+target_sources(plot_1 PRIVATE plot_1.cpp)
+target_link_libraries(plot_1 PRIVATE cxxplot Python3::Python Python3::NumPy)
 
 add_executable(example_2)
 target_sources(example_2 PRIVATE example_2.cpp)
