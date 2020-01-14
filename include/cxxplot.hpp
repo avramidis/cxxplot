@@ -1,10 +1,13 @@
+//---------------------------------------------------------------------------//
+// Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
 //
-// Created by elavram on 12/01/2020.
-//
+// Distributed under The MIT License (MIT)
+// See accompanying file LICENSE.txt
+//---------------------------------------------------------------------------//
 
 #ifndef CXXPLOTLIB_CXXPLOT_HPP
 #define CXXPLOTLIB_CXXPLOT_HPP
 
 #include "pyplot/Plot.hpp"
 
-#endif //CXXPLOTLIB_CXXPLOT_HPP
+#endif
