@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------//
 
 #include <iostream>
-#include "pyplot/Plot.hpp"
+#include "cxxplot.hpp"
 
 int
 main()
