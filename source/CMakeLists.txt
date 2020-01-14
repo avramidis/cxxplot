@@ -1,15 +1,23 @@
+# Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
+#
+# Distributed under The MIT License (MIT)
+# See accompanying file LICENSE.txt
+#---------------------------------------------------------------------------//
+
+include(GNUInstallDirs)
 add_library(cxxplot SHARED)
+
 target_sources(cxxplot PRIVATE
         ${CMAKE_SOURCE_DIR}/source/Matplotlib.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Plot.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp)
-target_include_directories(cxxplot PRIVATE
-        ${CMAKE_SOURCE_DIR}/include
-        ${CMAKE_SOURCE_DIR}/include/pyplot
-        ${Python3_INCLUDE_DIRS}
-        ${Python3_NumPy_INCLUDE_DIRS}
-        ${CMAKE_BINARY_DIR})
-target_link_libraries(cxxplot PRIVATE ${Python3_LIBRARIES})
+
+target_include_directories(cxxplot PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+
+target_link_libraries(cxxplot PRIVATE Python3::Python Python3::NumPy)
 
 set_target_properties(cxxplot PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
@@ -17,10 +25,10 @@ set_target_properties(cxxplot PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    target_compile_definitions(cxxplot PRIVATE cxxplot_EXPORT)
+    target_compile_definitions(cxxplot PUBLIC cxxplot_EXPORT)
 
     add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cxxplot.dll
-            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:example_1>"
+            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:plot_1>"
             VERBATIM)
     add_custom_target(copyddlexamples ALL
             DEPENDS ${CMAKE_BINARY_DIR}/examples/cxxplot.dll cxxplot
@@ -34,23 +42,36 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     #            VERBATIM)
 endif ()
 
-include(GNUInstallDirs)
-install(TARGETS cxxplot
-        EXPORT cxxplot
+install(TARGETS cxxplot EXPORT cxxplotTargets
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT cxxplot_RunTime
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT cxxplot_RunTime NAMELINK_COMPONENT cxxplot_Development
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT cxxplot_Development)
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT cxxplot_Development
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include
-        DESTINATION .
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+        TYPE INCLUDE
         FILES_MATCHING
         PATTERN *.hpp
         PERMISSIONS OWNER_READ OWNER_WRITE
         GROUP_READ
         WORLD_READ)
 
-install(EXPORT cxxplot
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cxxplot
+install(FILES ${CMAKE_BINARY_DIR}/cxxplot_export.h
+        TYPE INCLUDE
+        PERMISSIONS OWNER_READ OWNER_WRITE
+        GROUP_READ
+        WORLD_READ)
+
+install(EXPORT cxxplotTargets
         NAMESPACE cxxplot::
         FILE cxxplotConfig.cmake
-        )
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cxxplot)
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+        cxxplotConfigVersion.cmake
+        VERSION 1.0.0
+        COMPATIBILITY SameMajorVersion)
+
+install(FILES ${PROJECT_BINARY_DIR}/source/cxxplotConfigVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cxxplot)

@@ -6,24 +6,24 @@
 //---------------------------------------------------------------------------//
 
 #include <iostream>
-#include "pyplot/Plot.hpp"
+#include "cxxplot.hpp"
 
 int
 main()
 {
-    std::cout << "Running example_1" << std::endl;
-
-    std::vector<double> x{1.0, 2.0};
-    std::vector<double> y{2.0, 3.0};
+    std::cout << "Running plot_1 example" << std::endl;
 
     std::vector<std::pair<std::string, std::string>> args;
     args.emplace_back("color", "r");
     args.emplace_back("marker", "o");
 
-    cxxplot::Plot plot_1(x, y, args);
-    plot_1.set_xlabel("x label");
-    plot_1.set_ylabel("y label");
-    plot_1.show_plot();
+    std::vector<int> x_int{1, 2};
+    std::vector<int> y_int{2, 3};
+
+    cxxplot::Plot<int> plot_int(x_int, y_int, args);
+    plot_int.set_xlabel("x label");
+    plot_int.set_ylabel("y label");
+    plot_int.savefig("save_plot_1.svg");
 
     return 0;
 }

@@ -16,25 +16,29 @@
 #include <stdexcept>
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Pyplot : public Matplotlib {
-	public:
-		PyObject* xlabel;
-		PyObject* ylabel;
-		PyObject* show;
+    template<class inputType>
+    class CXXPLOT_EXPORT Pyplot : public Matplotlib<inputType> {
+    public:
+        PyObject* xlabel;
+        PyObject* ylabel;
+        PyObject* show;
 
-		Pyplot();
+        Pyplot();
 
-		~Pyplot();
+        ~Pyplot();
 
-		void
-		set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
+        void
+        set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
-		void
-		set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
+        void
+        set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
-		void
-		show_plot();
-	};
+        void
+        show_plot();
+
+        void
+        savefig(std::string const& fname);
+    };
 }
 
 #endif

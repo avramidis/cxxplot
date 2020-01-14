@@ -17,7 +17,7 @@
 #include <string>
 
 namespace cxxplot {
-
+    template<class inputType>
     class Matplotlib {
     public:
         PyObject* matplotlib_pyplot;
@@ -28,7 +28,7 @@ namespace cxxplot {
         ~Matplotlib();
 
         PyObject*
-        vector_2_numpy(std::vector<double>& vector);
+        vector_to_numpy(std::vector<inputType>& vector);
     };
 }
 
