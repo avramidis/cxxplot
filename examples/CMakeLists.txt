@@ -17,5 +17,5 @@ add_executable(example_3)
 target_sources(example_3 PRIVATE example_3.cpp)
 target_link_libraries(example_3 PRIVATE cxxplot Python3::Python Python3::NumPy)
 
-set_target_properties(example_1 example_2 example_3 PROPERTIES
+set_target_properties(plot_1 example_2 example_3 PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/examples")

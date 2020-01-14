@@ -28,7 +28,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_definitions(cxxplot PUBLIC cxxplot_EXPORT)
 
     add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cxxplot.dll
-            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:example_1>"
+            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:plot_1>"
             VERBATIM)
     add_custom_target(copyddlexamples ALL
             DEPENDS ${CMAKE_BINARY_DIR}/examples/cxxplot.dll cxxplot
