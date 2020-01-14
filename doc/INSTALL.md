@@ -31,7 +31,7 @@ Use the following commands in a terminal to install the GNU compiler
 
 ```bash
 sudo apt update
-sudo apt install build-essential g++-9
+sudo apt install build-essential g++ gcc
 ```
 
 To install the Python3 interpreter, numpy and matplotlib use the following command in a terminal
@@ -43,13 +43,14 @@ sudo pip3 install matplotlib
 
 ### Build
 
-Build with g++ navigate to the directory with 
+Build with gcc navigate to the directory with 
 
 ```bash
 mkdir build-gcc
 cd build-gcc
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j4
+sudo make install
 ```
 
 ## Support
