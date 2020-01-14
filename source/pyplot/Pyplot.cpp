@@ -9,12 +9,15 @@
 
 namespace cxxplot {
 
-	Pyplot::Pyplot() { };
+    template<class inputType>
+	Pyplot<inputType>::Pyplot() { };
 
-	Pyplot::~Pyplot() { };
+    template<class inputType>
+	Pyplot<inputType>::~Pyplot() { };
 
+    template<class inputType>
 	void
-	Pyplot::set_xlabel(std::string const& label, std::map<std::string, std::string> const& args)
+	Pyplot<inputType>::set_xlabel(std::string const& label, std::map<std::string, std::string> const& args)
 	{
 		xlabel = PyObject_GetAttrString(matplotlib_pyplot, "xlabel");
 		if (PyCallable_Check(xlabel)) {
@@ -36,8 +39,9 @@ namespace cxxplot {
 		}
 	}
 
+    template<class inputType>
 	void
-	Pyplot::set_ylabel(std::string const& label, std::map<std::string, std::string> const& args)
+	Pyplot<inputType>::set_ylabel(std::string const& label, std::map<std::string, std::string> const& args)
 	{
 		ylabel = PyObject_GetAttrString(matplotlib_pyplot, "ylabel");
 		if (PyCallable_Check(ylabel)) {
@@ -59,8 +63,9 @@ namespace cxxplot {
 		}
 	}
 
+    template<class inputType>
 	void
-	Pyplot::show_plot()
+	Pyplot<inputType>::show_plot()
 	{
 		show = PyObject_GetAttrString(matplotlib_pyplot, "show");
 		if (show==NULL)
@@ -75,4 +80,8 @@ namespace cxxplot {
 			throw std::runtime_error("show could not be called!\n");
 		}
 	}
+
+    template class Pyplot<int>;
+    template class Pyplot<float>;
+    template class Pyplot<double>;
 }

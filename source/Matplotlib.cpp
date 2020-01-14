@@ -6,11 +6,13 @@
 //---------------------------------------------------------------------------//
 
 #include "Matplotlib.hpp"
+#include "generic/convertToNumpy.hpp"
 #include <iostream>
 #include <stdexcept>
 
 namespace cxxplot {
-    Matplotlib::Matplotlib()
+    template<class inputType>
+    Matplotlib<inputType>::Matplotlib()
     {
         Py_Initialize();
         PyRun_SimpleString("import sys\n"
@@ -34,7 +36,8 @@ namespace cxxplot {
         }
     }
 
-    Matplotlib::~Matplotlib()
+    template<class inputType>
+    Matplotlib<inputType>::~Matplotlib()
     {
         Py_DECREF(matplotlib_pyplot);
         if (Py_FinalizeEx()<0) {
@@ -43,19 +46,19 @@ namespace cxxplot {
         }
     }
 
+    template<class inputType>
     PyObject*
-    Matplotlib::vector_2_numpy(std::vector<double>& vector)
+    Matplotlib<inputType>::vector_to_numpy(std::vector<inputType>& vector)
     {
-        import_array();
+        PyObject* p_array = covert_to_numpy_array(vector);
 
-        npy_intp dims = vector.size();
-
-        // Convert it to a NumPy array.
-        PyObject* p_array = PyArray_SimpleNewFromData(
-                1, &dims, NPY_DOUBLE, (void*) (vector.data()));
         if (!p_array)
             std::cout << "Error!" << std::endl;
 
         return p_array;
     }
+
+    template class Matplotlib<int>;
+    template class Matplotlib<float>;
+    template class Matplotlib<double>;
 }

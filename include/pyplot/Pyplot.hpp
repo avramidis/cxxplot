@@ -16,7 +16,8 @@
 #include <stdexcept>
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Pyplot : public Matplotlib {
+    template<class inputType>
+	class CXXPLOT_EXPORT Pyplot : public Matplotlib<inputType> {
 	public:
 		PyObject* xlabel;
 		PyObject* ylabel;

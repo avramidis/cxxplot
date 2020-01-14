@@ -14,28 +14,29 @@
 #include <map>
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Plot : public Pyplot {
-	private:
-		PyObject* plot;
+    template<class inputType>
+    class CXXPLOT_EXPORT Plot : public Pyplot<inputType> {
+    private:
+        PyObject* plot;
 
-	public:
-		explicit Plot(std::vector<double>& x, std::vector<double>& y);
-		explicit Plot(std::vector<double>& x, std::vector<double>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
-		~Plot();
+    public:
+        explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y);
+        explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
+                std::vector<std::pair<std::string, std::string>>& args);
+        ~Plot();
 
-	private:
-		void
-		initialize();
+    private:
+        void
+        initialize();
 
-		void
-		draw(std::vector<double>& x, std::vector<double>& y);
+        void
+        draw(std::vector<inputType>& x, std::vector<inputType>& y);
 
-		void
-		draw(std::vector<double>& x, std::vector<double>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
+        void
+        draw(std::vector<inputType>& x, std::vector<inputType>& y,
+                std::vector<std::pair<std::string, std::string>>& args);
 
-	};
+    };
 }
 
 #endif
