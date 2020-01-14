@@ -34,14 +34,6 @@ sudo apt update
 sudo apt install build-essential g++-9
 ```
 
-Download the latest OpenMPI version and install to it with the GNU compiler use the following commands
-
-```bash
-./configure --enable-mpi-fortran --prefix=/opt/openmpi-4.0.2 CC=/usr/bin/gcc CXX=/usr/bin/g++ FC=/usr/bin/gfortran F77=/usr/bin/gfortran
-make -j4
-sudo make install
-```
-
 To install the Python3 interpreter, numpy and matplotlib use the following command in a terminal
 
 ```bash
@@ -56,7 +48,7 @@ Build with g++ navigate to the directory with
 ```bash
 mkdir build-gcc
 cd build-gcc
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_OPENACC=OFF -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpic++ -DCMAKE_Fortran_COMPILER=mpif90 -DHDF5_ROOT=/opt/hdf5/openmpi-4.0.2/gcc/1.10.5 ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j4
 ```
 
