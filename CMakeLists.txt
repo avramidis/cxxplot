@@ -7,7 +7,7 @@
 cmake_minimum_required(VERSION 3.15.3)
 
 project(cxxplot
-        VERSION 1.0.0
+        VERSION 0.0.1
         DESCRIPTION "C++ plot library."
         HOMEPAGE_URL "https://github.com/avramidis/cxxplot")
 
