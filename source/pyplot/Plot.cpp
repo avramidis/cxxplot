@@ -6,6 +6,7 @@
 //---------------------------------------------------------------------------//
 
 #include "pyplot/Plot.hpp"
+#include "generic/pythonCalls.hpp"
 #include <stdexcept>
 
 namespace cxxplot {
@@ -34,12 +35,7 @@ namespace cxxplot {
     void
     Plot<inputType>::initialize()
     {
-        plot = PyObject_GetAttrString(matplotlib_pyplot, "plot");
-        Py_INCREF(plot);
-        if (plot==NULL) {
-            PyErr_Print();
-            throw std::runtime_error("Could not get plot attribute!\n");
-        }
+        plot = PythonCalls::get_pyobject_function_by_string(matplotlib_pyplot, "plot");
     }
 
     template<class inputType>

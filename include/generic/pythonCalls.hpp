@@ -5,29 +5,23 @@
 // See accompanying file LICENSE.txt
 //---------------------------------------------------------------------------//
 
-#ifndef CPPPYPLOT_MATPLOTLIB_HPP
-#define CPPPYPLOT_MATPLOTLIB_HPP
-
-#define PY_SSIZE_T_CLEAN
+#ifndef CXXPLOT_PYTHONCALLS_HPP
+#define CXXPLOT_PYTHONCALLS_HPP
 
 #include <Python.h>
 #include "cxxplot_export.h"
-#include <vector>
 #include <string>
+#include <stdexcept>
 
 namespace cxxplot {
-    template<class inputType>
-    class CXXPLOT_EXPORT Matplotlib {
+
+    class CXXPLOT_EXPORT PythonCalls {
     public:
-        PyObject* matplotlib_pyplot;
-        PyObject* numpy;
+        [[nodiscard]] static PyObject*
+        get_pyobject_module_by_string(const std::string& str);
 
-        Matplotlib();
-
-        ~Matplotlib();
-
-        PyObject*
-        vector_to_numpy(std::vector<inputType>& vector);
+        [[nodiscard]] static PyObject*
+        get_pyobject_function_by_string(PyObject* parent_module, const std::string& str);
     };
 }
 

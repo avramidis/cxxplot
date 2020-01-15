@@ -8,9 +8,7 @@
 #ifndef CXXPLOT_PYPLOT_HPP
 #define CXXPLOT_PYPLOT_HPP
 
-#include "Python.h"
 #include "Matplotlib.hpp"
-#include "pyplot/Pyplot.hpp"
 #include <map>
 #include <string>
 #include <stdexcept>
