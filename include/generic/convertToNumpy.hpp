@@ -14,7 +14,7 @@
 
 namespace cxxplot {
 
-    PyObject*
+    [[nodiscard]] PyObject*
     covert_to_numpy_array(std::vector<int> &vector)
     {
         import_array();
@@ -24,7 +24,7 @@ namespace cxxplot {
         return p_array;
     }
 
-    PyObject*
+    [[nodiscard]] PyObject*
     covert_to_numpy_array(std::vector<float> &vector)
     {
         import_array();
@@ -34,7 +34,7 @@ namespace cxxplot {
         return p_array;
     }
 
-    PyObject*
+    [[nodiscard]] PyObject*
     covert_to_numpy_array(std::vector<double> &vector)
     {
         import_array();

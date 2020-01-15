@@ -5,21 +5,21 @@
 #---------------------------------------------------------------------------//
 
 cmake_minimum_required(VERSION 3.15.3)
-add_executable(plot_1)
-target_sources(plot_1 PRIVATE plot_1.cpp)
-target_link_libraries(plot_1 PRIVATE cxxplot Python3::Python Python3::NumPy)
 
-add_executable(save_plot_1)
-target_sources(save_plot_1 PRIVATE save_plot_1.cpp)
-target_link_libraries(save_plot_1 PRIVATE cxxplot Python3::Python Python3::NumPy)
+function(SIMPLE EXE_NAME SRC_NAME)
+    message(STATUS "Generating ${EXE_NAME} target")
 
-add_executable(example_2)
-target_sources(example_2 PRIVATE example_2.cpp)
-target_link_libraries(example_2 PRIVATE cxxplot Python3::Python Python3::NumPy)
+    add_executable(${EXE_NAME})
+    target_sources(${EXE_NAME} PRIVATE ${SRC_NAME})
 
-add_executable(example_3)
-target_sources(example_3 PRIVATE example_3.cpp)
-target_link_libraries(example_3 PRIVATE cxxplot Python3::Python Python3::NumPy)
+    target_include_directories(${EXE_NAME} PRIVATE ${Python3_INCLUDE_DIRS} ${Python3_NumPy_INCLUDE_DIRS})
+    target_link_libraries(${EXE_NAME} PRIVATE cxxplot Python3::Python Python3::NumPy)
 
-set_target_properties(plot_1 save_plot_1 example_2 example_3 PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/examples")
+    set_target_properties(${EXE_NAME} PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/examples")
+
+endfunction()
+
+
+simple(plot_1 plot_1.cpp)
+simple(save_plot_1 save_plot_1.cpp)

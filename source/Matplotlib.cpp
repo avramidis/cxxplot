@@ -7,6 +7,7 @@
 
 #include "Matplotlib.hpp"
 #include "generic/convertToNumpy.hpp"
+#include "generic/pythonCalls.hpp"
 #include <iostream>
 #include <stdexcept>
 
@@ -19,21 +20,8 @@ namespace cxxplot {
                            "sys.argv.append('')\n");
         //"print(sys.argv)\n");
 
-        matplotlib_pyplot = PyImport_ImportModule("matplotlib.pyplot");
-        if (matplotlib_pyplot==NULL) {
-            PyErr_Print();
-            throw std::runtime_error("matplotlib.pyplot could not be imported!\n");
-        }
-        else {
-            Py_INCREF(matplotlib_pyplot);
-        }
-
-        numpy = PyImport_ImportModule("numpy");
-        Py_INCREF(numpy);
-        if (numpy==NULL) {
-            PyErr_Print();
-            throw std::runtime_error("numpy could not be imported!\n");
-        }
+        matplotlib_pyplot = PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
+        numpy = PythonCalls::get_pyobject_module_by_string("numpy");
     }
 
     template<class inputType>
