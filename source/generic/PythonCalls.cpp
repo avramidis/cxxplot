@@ -5,7 +5,7 @@
 // See accompanying file LICENSE.txt
 //---------------------------------------------------------------------------//
 
-#include "generic/pythonCalls.hpp"
+#include "generic/PythonCalls.hpp"
 
 namespace cxxplot {
 

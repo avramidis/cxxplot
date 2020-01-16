@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------//
 
 #include "pyplot/Pyplot.hpp"
-#include "generic/pythonCalls.hpp"
+#include "generic/PythonCalls.hpp"
 
 namespace cxxplot {
 

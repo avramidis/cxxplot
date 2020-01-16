@@ -7,7 +7,7 @@
 
 #include "Matplotlib.hpp"
 #include "generic/convertToNumpy.hpp"
-#include "generic/pythonCalls.hpp"
+#include "generic/PythonCalls.hpp"
 #include <iostream>
 #include <stdexcept>
 
