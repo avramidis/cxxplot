@@ -10,35 +10,25 @@
 #include "generic/PythonCalls.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "PythonInterpreter.hpp"
 
 namespace cxxplot {
     template<class inputType>
-    Matplotlib<inputType>::Matplotlib()
-    {
-        Py_Initialize();
-        PyRun_SimpleString("import sys\n"
-                           "sys.argv.append('')\n");
-        //"print(sys.argv)\n");
+    Matplotlib<inputType>::Matplotlib() {
+        PythonInterpreter *python_interpreter = PythonInterpreter::getInstance();
 
         matplotlib_pyplot = PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
         numpy = PythonCalls::get_pyobject_module_by_string("numpy");
     }
 
     template<class inputType>
-    Matplotlib<inputType>::~Matplotlib()
-    {
-        Py_DECREF(matplotlib_pyplot);
-        if (Py_FinalizeEx()<0) {
-            PyErr_Print();
-            std::cout << "Warning: Python interpreter could not be finalized!" << std::endl;
-        }
+    Matplotlib<inputType>::~Matplotlib() {
     }
 
     template<class inputType>
-    PyObject*
-    Matplotlib<inputType>::vector_to_numpy(std::vector<inputType>& vector)
-    {
-        PyObject* p_array = covert_to_numpy_array(vector);
+    PyObject *
+    Matplotlib<inputType>::vector_to_numpy(std::vector<inputType> &vector) {
+        PyObject *p_array = covert_to_numpy_array(vector);
 
         if (!p_array)
             std::cout << "Error!" << std::endl;
@@ -46,7 +36,12 @@ namespace cxxplot {
         return p_array;
     }
 
-    template class Matplotlib<int>;
-    template class Matplotlib<float>;
-    template class Matplotlib<double>;
+    template
+    class Matplotlib<int>;
+
+    template
+    class Matplotlib<float>;
+
+    template
+    class Matplotlib<double>;
 }
