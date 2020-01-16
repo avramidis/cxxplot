@@ -35,7 +35,7 @@ namespace cxxplot {
     void
     Plot<inputType>::initialize()
     {
-        plot = PythonCalls::get_pyobject_function_by_string(matplotlib_pyplot, "plot");
+        plot = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "plot");
     }
 
     template<class inputType>
@@ -43,8 +43,8 @@ namespace cxxplot {
     Plot<inputType>::draw(std::vector<inputType>& x, std::vector<inputType>& y)
     {
         if (PyCallable_Check(plot)) {
-            PyObject* x_py = vector_to_numpy(x);
-            PyObject* y_py = vector_to_numpy(y);
+            PyObject* x_py = this->vector_to_numpy(x);
+            PyObject* y_py = this->vector_to_numpy(y);
 
             PyObject* plot_args = PyTuple_New(2);
             PyTuple_SetItem(plot_args, 0, x_py);

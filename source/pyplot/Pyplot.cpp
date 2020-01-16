@@ -20,7 +20,7 @@ namespace cxxplot {
     void
     Pyplot<inputType>::set_xlabel(std::string const& label, std::map<std::string, std::string> const& args)
     {
-        xlabel = PythonCalls::get_pyobject_function_by_string(matplotlib_pyplot, "xlabel");
+        xlabel = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "xlabel");
 
         PyObject* py_label = PyUnicode_FromString(label.c_str());
 
@@ -39,7 +39,7 @@ namespace cxxplot {
     void
     Pyplot<inputType>::set_ylabel(std::string const& label, std::map<std::string, std::string> const& args)
     {
-        ylabel = PythonCalls::get_pyobject_function_by_string(matplotlib_pyplot, "ylabel");
+        ylabel = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "ylabel");
 
         PyObject* py_label = PyUnicode_FromString(label.c_str());
 
@@ -59,7 +59,7 @@ namespace cxxplot {
     void
     Pyplot<inputType>::show_plot()
     {
-        show = PythonCalls::get_pyobject_function_by_string(matplotlib_pyplot, "show");
+        show = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "show");
 
         PyObject* res = PyObject_CallObject(show, NULL);
         if (res) Py_DECREF(res);
@@ -69,7 +69,7 @@ namespace cxxplot {
     void
     Pyplot<inputType>::savefig(std::string const& fname)
     {
-        PyObject* savefig = PythonCalls::get_pyobject_function_by_string(matplotlib_pyplot, "savefig");
+        PyObject* savefig = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "savefig");
 
         PyObject* py_fname = PyUnicode_FromString(fname.c_str());
 
