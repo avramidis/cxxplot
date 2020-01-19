@@ -8,7 +8,7 @@ build:ubuntu:
   tags:
     - docker
   script:
-    - apt-get update && apt-get install -y build-essential wget libssl-dev
+    - apt-get update && apt-get install -y build-essential wget cmake
     - mkdir cmake
     - wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.sh
     - sh ./cmake-3.16.2-Linux-x86_64.sh --skip-license
