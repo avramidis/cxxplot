@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 build:ubuntu:
   image: ubuntu:rolling
@@ -7,10 +8,11 @@ build:ubuntu:
   tags:
     - docker
   script:
-    - apt-get update && apt-get install -y build-essential
-    - apt update
-    - apt install -y snapd
-    - snap install cmake --classic
+    - apt-get update && apt-get install -y build-essential wget libssl-dev
+    - mkdir cmake
+    - wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.sh
+    - sh ./cmake-3.16.2-Linux-x86_64.sh --skip-license
+    - cp bin/* /usr/bin
     - cd /builds/$CI_PROJECT_PATH
     - mkdir build
     - cd build
