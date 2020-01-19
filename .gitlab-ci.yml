@@ -3,17 +3,12 @@ stages:
   - test
 
 build:ubuntu:
-  image: ubuntu:rolling
+  image: ubuntu:focal
   stage: build
   tags:
     - docker
   script:
-    - apt-get update && apt-get install -y build-essential wget cmake cmake-data
-    - mkdir cmake
-    - wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.sh
-    - sh ./cmake-3.16.2-Linux-x86_64.sh --skip-license
-    - cp bin/* /usr/bin
-    - . ~/.bashrc
+    - apt-get update && apt-get install -y build-essential wget cmake
     - cd /builds/$CI_PROJECT_PATH
     - mkdir build
     - cd build
