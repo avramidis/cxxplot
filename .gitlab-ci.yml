@@ -9,7 +9,7 @@ build:ubuntu:
   script:
     - apt-get update && apt-get install -y build-essential
     - apt update
-    - apt install snapd
+    - apt install -y snapd
     - snap install cmake --classic
     - cd /builds/$CI_PROJECT_PATH
     - mkdir build
