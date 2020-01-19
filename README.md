@@ -8,7 +8,6 @@ branch | Windows | Ubuntu
 | :--- | ---: | ---: |
 | master | [![Build status](https://ci.appveyor.com/api/projects/status/1b5kmevuiem6qh78/branch/master?svg=true)](https://ci.appveyor.com/project/avramidis/cxxplot/branch/master) | [![pipeline status](https://gitlab.com/avramidis/cxxplot/badges/master/pipeline.svg)](https://gitlab.com/avramidis/cxxplot/commits/master)
 | develop | [![Build status](https://ci.appveyor.com/api/projects/status/1b5kmevuiem6qh78/branch/develop?svg=true)](https://ci.appveyor.com/project/avramidis/cxxplot/branch/develop) | [![pipeline status](https://gitlab.com/avramidis/cxxplot/badges/develop/pipeline.svg)](https://gitlab.com/avramidis/cxxplot/commits/develop)
-| last pushed | [![Build status](https://ci.appveyor.com/api/projects/status/1b5kmevuiem6qh78?svg=true)](https://ci.appveyor.com/project/avramidis/cxxplot) | [![pipeline status](https://gitlab.com/avramidis/cxxplot/badges/master/pipeline.svg)](https://gitlab.com/avramidis/cxxplot/commits/master)
 
 ### Introduction
 cxxplot is a C++ plotting library that uses matplotlib (https://matplotlib.org/). Currently, cxxplot is under development and it is not suited for production.  
