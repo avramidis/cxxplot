@@ -7,7 +7,10 @@ build:ubuntu:
   tags:
     - docker
   script:
-    - apt-get update && apt-get install -y build-essential cmake
+    - apt-get update && apt-get install -y build-essential
+    - sudo add-apt-repository ppa:george-edison55/cmake-3.x
+    - sudo apt update
+    - sudo apt install cmake
     - cd /builds/$CI_PROJECT_PATH
     - mkdir build
     - cd build
