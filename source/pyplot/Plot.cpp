@@ -50,8 +50,10 @@ namespace cxxplot {
             PyTuple_SetItem(plot_args, 0, x_py);
             PyTuple_SetItem(plot_args, 1, y_py);
 
-            PyObject* res = PyObject_CallObject(plot, plot_args);
-            if (res) Py_DECREF(res);
+            PyObject* result = PyObject_CallObject(plot, plot_args);
+            if (result)
+                throw std::runtime_error("Failed to call plot!");
+            Py_DECREF(result);
         }
         else {
             PyErr_Print();
@@ -78,8 +80,10 @@ namespace cxxplot {
             PyTuple_SetItem(plot_args, 0, x_py);
             PyTuple_SetItem(plot_args, 1, y_py);
 
-            PyObject* res = PyObject_Call(plot, plot_args, kwargs);
-            if (res) Py_DECREF(res);
+            PyObject* result = PyObject_Call(plot, plot_args, kwargs);
+            if (result)
+                throw std::runtime_error("Failed to call plot!");
+            Py_DECREF(result);
         }
         else {
             PyErr_Print();

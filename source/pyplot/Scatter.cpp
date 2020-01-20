@@ -8,6 +8,7 @@
 #include "pyplot/Scatter.hpp"
 #include "generic/PythonCalls.hpp"
 #include <stdexcept>
+#include <iostream>
 
 namespace cxxplot {
 	template<class inputType>
@@ -50,12 +51,14 @@ namespace cxxplot {
 			PyTuple_SetItem(scatter_args, 0, x_py);
 			PyTuple_SetItem(scatter_args, 1, y_py);
 
-			PyObject* res = PyObject_CallObject(scatter, scatter_args);
-			if (res) Py_DECREF(res);
+			PyObject* result = PyObject_CallObject(scatter, scatter_args);
+            if (result == NULL)
+                throw std::runtime_error("scatter could not be called!\n");
+            Py_DECREF(result);
 		}
 		else {
 			PyErr_Print();
-			throw std::runtime_error("scatter could not be called!\n");
+			throw std::runtime_error("scatter is not callable!\n");
 		}
 	}
 
@@ -78,12 +81,14 @@ namespace cxxplot {
 			PyTuple_SetItem(scatter_args, 0, x_py);
 			PyTuple_SetItem(scatter_args, 1, y_py);
 
-			PyObject* res = PyObject_Call(scatter, scatter_args, kwargs);
-			if (res) Py_DECREF(res);
+			PyObject* result = PyObject_Call(scatter, scatter_args, kwargs);
+            if (result == NULL)
+                throw std::runtime_error("scatter could not be called!\n");
+            Py_DECREF(result);
 		}
 		else {
 			PyErr_Print();
-			throw std::runtime_error("scatter could not be called!\n");
+			throw std::runtime_error("scatter is not callable!\n");
 		}
 	}
 
