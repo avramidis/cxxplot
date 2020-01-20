@@ -11,6 +11,7 @@ target_sources(cxxplot PRIVATE
         ${CMAKE_SOURCE_DIR}/source/PythonInterpreter.cpp
         ${CMAKE_SOURCE_DIR}/source/Matplotlib.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Plot.cpp
+        ${CMAKE_SOURCE_DIR}/source/pyplot/Scatter.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp
         ${CMAKE_SOURCE_DIR}/source/generic/PythonCalls.cpp)
 

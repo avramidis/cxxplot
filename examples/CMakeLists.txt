@@ -22,4 +22,5 @@ endfunction()
 
 
 simple(plot_1 plot_1.cpp)
+simple(scatter_1 scatter_1.cpp)
 simple(save_plot_1 save_plot_1.cpp)

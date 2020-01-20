@@ -9,5 +9,6 @@
 #define CXXPLOTLIB_CXXPLOT_HPP
 
 #include "pyplot/Plot.hpp"
+#include "pyplot/Scatter.hpp"
 
 #endif
