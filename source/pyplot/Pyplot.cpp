@@ -19,6 +19,12 @@ namespace cxxplot {
     Pyplot<inputType>::~Pyplot() {};
 
     template<class inputType>
+    void Pyplot<inputType>::figure() {
+        PyObject *figure = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "figure");
+        PythonCalls::pyobject_callobject_with_checks(figure);
+    }
+
+    template<class inputType>
     void
     Pyplot<inputType>::set_xlabel(std::string const &label, std::map<std::string, std::string> const &args) {
         xlabel = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "xlabel");
@@ -56,10 +62,19 @@ namespace cxxplot {
 
     template<class inputType>
     void
-    Pyplot<inputType>::show_plot() {
+    Pyplot<inputType>::show_plot(bool blocked) {
         show = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "show");
 
-        PythonCalls::pyobject_callobject_with_checks(show);
+        if (blocked) {
+            PythonCalls::pyobject_callobject_with_checks(show);
+        } else {
+            PyObject *dict;
+            dict = Py_BuildValue("{s:i}", "block", 0);
+
+            PyObject *args = PyTuple_New(0);
+
+            PythonCalls::pyobject_call_with_checks(show, args, dict);
+        }
     }
 
     template<class inputType>
