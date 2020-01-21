@@ -25,6 +25,8 @@ namespace cxxplot {
 
 		~Pyplot();
 
+		void figure();
+
 		void
 		set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
@@ -32,7 +34,7 @@ namespace cxxplot {
 		set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
 		void
-		show_plot();
+		show_plot(bool blocked=true);
 
 		void
 		savefig(std::string const& fname);
