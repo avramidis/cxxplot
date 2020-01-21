@@ -33,10 +33,7 @@ namespace cxxplot {
             PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
         }
 
-        PyObject *result = PyObject_Call(xlabel, label_args, kwargs);
-        if (result == NULL)
-            throw std::runtime_error("Failed to call xlabel!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_call_with_checks(xlabel, label_args, kwargs);
     }
 
     template<class inputType>
@@ -54,10 +51,7 @@ namespace cxxplot {
             PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
         }
 
-        PyObject *result = PyObject_Call(ylabel, label_args, kwargs);
-        if (result == NULL)
-            throw std::runtime_error("Failed to call ylabel!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_call_with_checks(ylabel, label_args, kwargs);
     }
 
     template<class inputType>
@@ -65,10 +59,7 @@ namespace cxxplot {
     Pyplot<inputType>::show_plot() {
         show = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "show");
 
-        PyObject *result = PyObject_CallObject(show, NULL);
-        if (result == NULL)
-            throw std::runtime_error("Failed to call show!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_callobject_with_checks(show);
     }
 
     template<class inputType>
@@ -82,10 +73,7 @@ namespace cxxplot {
         PyTuple_SetItem(savefig_args, 0, py_fname);
 
         PyObject *kwargs = PyDict_New();
-        PyObject *result = PyObject_Call(savefig, savefig_args, kwargs);
-        if (result == NULL)
-            throw std::runtime_error("Failed to call savefig!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_call_with_checks(savefig, savefig_args, kwargs);
     }
 
     template<class inputType>
@@ -107,10 +95,7 @@ namespace cxxplot {
         PyTuple_SetItem(lim_args, 1, Py_BuildValue("d", max_value));
 
         PyObject *kwargs = PyDict_New();
-        PyObject *result = PyObject_Call(lim, lim_args, kwargs);
-        if (result == NULL)
-            throw std::runtime_error(std::string("Failed to call ") + lim_type.c_str() + "!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_call_with_checks(lim, lim_args, kwargs);
     }
 
     template
