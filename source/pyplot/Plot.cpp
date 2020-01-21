@@ -67,7 +67,7 @@ namespace cxxplot {
         PyTuple_SetItem(plot_args, 1, y_py);
 
         PyObject *result = PyObject_Call(plot, plot_args, kwargs);
-        if (result)
+        if (result == NULL)
             throw std::runtime_error("Failed to call plot!");
         Py_DECREF(result);
     }
