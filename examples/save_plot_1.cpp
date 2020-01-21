@@ -11,7 +11,7 @@
 int
 main()
 {
-    std::cout << "Running plot_1 example" << std::endl;
+    std::cout << "Running save_plot_1 example" << std::endl;
 
     std::vector<std::pair<std::string, std::string>> args;
     args.emplace_back("color", "r");
