@@ -1,7 +1,7 @@
 # Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
 #
 # Distributed under The MIT License (MIT)
-# See accompanying file LICENSE.txt
+# See accompanying file LICENSE
 #---------------------------------------------------------------------------//
 
 cmake_minimum_required(VERSION 3.15.3)
@@ -22,4 +22,5 @@ endfunction()
 
 
 simple(plot_1 plot_1.cpp)
+simple(scatter_1 scatter_1.cpp)
 simple(save_plot_1 save_plot_1.cpp)

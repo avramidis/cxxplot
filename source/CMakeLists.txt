@@ -1,15 +1,17 @@
 # Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
 #
 # Distributed under The MIT License (MIT)
-# See accompanying file LICENSE.txt
+# See accompanying file LICENSE
 #---------------------------------------------------------------------------//
 
 include(GNUInstallDirs)
 add_library(cxxplot SHARED)
 
 target_sources(cxxplot PRIVATE
+        ${CMAKE_SOURCE_DIR}/source/PythonInterpreter.cpp
         ${CMAKE_SOURCE_DIR}/source/Matplotlib.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Plot.cpp
+        ${CMAKE_SOURCE_DIR}/source/pyplot/Scatter.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp
         ${CMAKE_SOURCE_DIR}/source/generic/PythonCalls.cpp)
 

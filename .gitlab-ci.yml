@@ -1,0 +1,19 @@
+image: elavram/ubuntu:latest
+
+stages:
+  - build
+  - test
+
+build:ubuntu:
+  stage: build
+  tags:
+    - docker
+  script:
+    - cd /builds/$CI_PROJECT_PATH
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build
