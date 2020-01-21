@@ -1,7 +1,7 @@
 # Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
 #
 # Distributed under The MIT License (MIT)
-# See accompanying file LICENSE.txt
+# See accompanying file LICENSE
 #---------------------------------------------------------------------------//
 
 cmake_minimum_required(VERSION 3.15.3)
