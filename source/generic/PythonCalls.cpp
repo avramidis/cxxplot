@@ -35,5 +35,26 @@ namespace cxxplot {
             throw std::runtime_error(str+" could not be called!\n");
         }
     }
+
+    void PythonCalls::pyobject_call_with_checks(PyObject *object_to_call, PyObject *args, PyObject *kwargs) {
+        PyObject *result = PyObject_Call(object_to_call, args, kwargs);
+        if (result == NULL)
+            throw std::runtime_error("Failed to call PyObject!");
+        Py_DECREF(result);
+    }
+
+    void PythonCalls::pyobject_callobject_with_checks(PyObject *object_to_call) {
+        PyObject *result = PyObject_CallObject(object_to_call, NULL);
+        if (result == NULL)
+            throw std::runtime_error("Failed to call PyObject!");
+        Py_DECREF(result);
+    }
+
+    void PythonCalls::pyobject_callobject_with_checks(PyObject *object_to_call, PyObject *args) {
+        PyObject *result = PyObject_CallObject(object_to_call, args);
+        if (result == NULL)
+            throw std::runtime_error("Failed to call PyObject!");
+        Py_DECREF(result);
+    }
 }
 

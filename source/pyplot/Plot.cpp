@@ -44,10 +44,7 @@ namespace cxxplot {
         PyTuple_SetItem(plot_args, 0, x_py);
         PyTuple_SetItem(plot_args, 1, y_py);
 
-        PyObject *result = PyObject_CallObject(plot, plot_args);
-        if (result)
-            throw std::runtime_error("Failed to call plot!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_callobject_with_checks(plot, plot_args);
     }
 
     template<class inputType>
@@ -66,10 +63,7 @@ namespace cxxplot {
         PyTuple_SetItem(plot_args, 0, x_py);
         PyTuple_SetItem(plot_args, 1, y_py);
 
-        PyObject *result = PyObject_Call(plot, plot_args, kwargs);
-        if (result == NULL)
-            throw std::runtime_error("Failed to call plot!");
-        Py_DECREF(result);
+        PythonCalls::pyobject_call_with_checks(plot, plot_args, kwargs);
     }
 
     template
