@@ -2,7 +2,7 @@
 // Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
 //
 // Distributed under The MIT License (MIT)
-// See accompanying file LICENSE.txt
+// See accompanying file LICENSE
 //---------------------------------------------------------------------------//
 
 #include "pyplot/Scatter.hpp"
