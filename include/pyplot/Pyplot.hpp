@@ -34,16 +34,20 @@ namespace cxxplot {
 		set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
 		void
-		show_plot(bool blocked=true);
+		show_plot(bool blocked = true);
 
 		void
 		savefig(std::string const& fname);
 
 		void set_xlim(double x_min, double x_max);
 		void set_ylim(double y_min, double y_max);
-
+		void add_data(std::vector<inputType>& x, std::vector<inputType>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
 	private:
 		void set_x_or_y_lim(double min_value, double max_value, std::string lim_type);
+		virtual void
+		draw(std::vector<inputType>& x, std::vector<inputType>& y,
+				std::vector<std::pair<std::string, std::string>>& args) = 0;
 	};
 }
 
