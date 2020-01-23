@@ -11,17 +11,26 @@
 #include <iostream>
 
 namespace cxxplot {
+
+	template<class inputType>
+	Scatter<inputType>::Scatter() {
+		this->figure();
+		initialize();
+	}
+
     template<class inputType>
     Scatter<inputType>::Scatter(std::vector<inputType> &x, std::vector<inputType> &y) {
-        initialize();
-        draw(x, y);
+		this->figure();
+    	initialize();
+    	draw(x, y);
     }
 
     template<class inputType>
     Scatter<inputType>::Scatter(std::vector<inputType> &x, std::vector<inputType> &y,
                                 std::vector<std::pair<std::string, std::string>> &args) {
-        initialize();
-        draw(x, y, args);
+		this->figure();
+    	initialize();
+    	draw(x, y, args);
     }
 
     template<class inputType>
