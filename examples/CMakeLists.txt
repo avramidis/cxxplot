@@ -17,7 +17,6 @@ function(ADD_EXAMPLE EXE_NAME SRC_NAME)
 
     set_target_properties(${EXE_NAME} PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/examples")
-
 endfunction()
 
 
@@ -27,3 +26,4 @@ add_example(save_plot_1 save_plot_1.cpp)
 add_example(plot_block plot_block.cpp)
 add_example(plot_add_extra_data plot_add_extra_data.cpp)
 add_example(plot_add_data_in_loop plot_add_data_in_loop.cpp)
+add_example(histogram_1 histogram_1.cpp)

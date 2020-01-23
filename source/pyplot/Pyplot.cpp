@@ -120,6 +120,13 @@ namespace cxxplot {
 		draw(x, y, args);
 	}
 
+	template<class inputType>
+	void Pyplot<inputType>::draw(std::vector<inputType>& x, std::vector<inputType>& y,
+			std::vector<std::pair<std::string, std::string>>& args)
+	{
+
+	}
+
 	template
     class Pyplot<int>;
 

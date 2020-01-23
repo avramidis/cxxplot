@@ -10,5 +10,6 @@
 
 #include "pyplot/Plot.hpp"
 #include "pyplot/Scatter.hpp"
+#include <pyplot/Histogram.hpp>
 
 #endif
