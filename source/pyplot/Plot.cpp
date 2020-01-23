@@ -19,6 +19,7 @@ namespace cxxplot {
     template<class inputType>
     Plot<inputType>::Plot(std::vector<inputType> &x, std::vector<inputType> &y,
                           std::vector<std::pair<std::string, std::string>> &args) {
+    	this->figure();
         initialize();
         draw(x, y, args);
     }

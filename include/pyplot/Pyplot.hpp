@@ -34,7 +34,7 @@ namespace cxxplot {
 		set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
 		void
-		show_plot(bool blocked=true);
+		show_plot(bool blocked = true);
 
 		void
 		savefig(std::string const& fname);

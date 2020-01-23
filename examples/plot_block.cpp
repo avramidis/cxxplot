@@ -27,9 +27,6 @@ main()
 	plot_double.set_ylim(0, 8);
     plot_double.show_plot(false);
 
-    cxxplot::Pyplot<float> pyplot;
-    pyplot.figure();
-
     std::vector<float> x_float{1.0, 2.0};
     std::vector<float> y_float{2.0, 3.0};
 
