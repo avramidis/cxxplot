@@ -13,6 +13,7 @@
 namespace cxxplot {
     template<class inputType>
     Scatter<inputType>::Scatter(std::vector<inputType> &x, std::vector<inputType> &y) {
+		this->figure();
         initialize();
         draw(x, y);
     }
@@ -20,6 +21,7 @@ namespace cxxplot {
     template<class inputType>
     Scatter<inputType>::Scatter(std::vector<inputType> &x, std::vector<inputType> &y,
                                 std::vector<std::pair<std::string, std::string>> &args) {
+		this->figure();
         initialize();
         draw(x, y, args);
     }
