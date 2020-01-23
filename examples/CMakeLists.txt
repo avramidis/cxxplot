@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 3.15.3)
 
-function(SIMPLE EXE_NAME SRC_NAME)
+function(ADD_EXAMPLE EXE_NAME SRC_NAME)
     message(STATUS "Generating ${EXE_NAME} target")
 
     add_executable(${EXE_NAME})
@@ -21,8 +21,9 @@ function(SIMPLE EXE_NAME SRC_NAME)
 endfunction()
 
 
-simple(plot_1 plot_1.cpp)
-simple(scatter_1 scatter_1.cpp)
-simple(save_plot_1 save_plot_1.cpp)
-simple(plot_block plot_block.cpp)
-simple(plot_add_extra_data plot_add_extra_data.cpp)
+add_example(plot_1 plot_1.cpp)
+add_example(scatter_1 scatter_1.cpp)
+add_example(save_plot_1 save_plot_1.cpp)
+add_example(plot_block plot_block.cpp)
+add_example(plot_add_extra_data plot_add_extra_data.cpp)
+add_example(plot_add_data_in_loop plot_add_data_in_loop.cpp)

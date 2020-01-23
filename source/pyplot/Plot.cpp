@@ -10,10 +10,17 @@
 #include <stdexcept>
 
 namespace cxxplot {
+
+	template<class inputType>
+	Plot<inputType>::Plot() {
+		this->figure();
+		initialize();
+	}
+
     template<class inputType>
     Plot<inputType>::Plot(std::vector<inputType> &x, std::vector<inputType> &y) {
 		this->figure();
-        initialize();
+    	initialize();
         draw(x, y);
     }
 
@@ -21,8 +28,8 @@ namespace cxxplot {
     Plot<inputType>::Plot(std::vector<inputType> &x, std::vector<inputType> &y,
                           std::vector<std::pair<std::string, std::string>> &args) {
     	this->figure();
-        initialize();
-        draw(x, y, args);
+		initialize();
+    	draw(x, y, args);
     }
 
     template<class inputType>

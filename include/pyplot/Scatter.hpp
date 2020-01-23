@@ -19,6 +19,7 @@ namespace cxxplot {
 		PyObject* scatter;
 
 	public:
+		Scatter();
 		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y);
 		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y,
 				std::vector<std::pair<std::string, std::string>>& args);

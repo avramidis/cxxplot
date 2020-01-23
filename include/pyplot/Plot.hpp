@@ -19,6 +19,7 @@ namespace cxxplot {
         PyObject* plot;
 
     public:
+		Plot();
         explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y);
         explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
                 std::vector<std::pair<std::string, std::string>>& args);
