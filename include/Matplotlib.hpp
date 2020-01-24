@@ -25,9 +25,6 @@ namespace cxxplot {
         Matplotlib();
 
         ~Matplotlib();
-
-        PyObject*
-        vector_to_numpy(std::vector<inputType>& vector);
     };
 }
 

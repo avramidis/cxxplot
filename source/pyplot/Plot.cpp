@@ -7,6 +7,7 @@
 
 #include "pyplot/Plot.hpp"
 #include "generic/PythonCalls.hpp"
+#include "generic/ConvertToNumpy.hpp"
 #include <stdexcept>
 #include <numeric>
 
@@ -132,8 +133,8 @@ namespace cxxplot {
 	PyObject*
 	Plot<inputType>::generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt)
 	{
-		PyObject* x_py = this->vector_to_numpy(x);
-		PyObject* y_py = this->vector_to_numpy(y);
+		PyObject* x_py = ConvertToNumpy::vector_to_numpy(x);
+		PyObject* y_py = ConvertToNumpy::vector_to_numpy(y);
 		PyObject* fmt_py = PyUnicode_FromString(fmt.c_str());
 
 		PyObject* args = PyTuple_New(3);
