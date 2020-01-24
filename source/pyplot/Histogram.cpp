@@ -19,11 +19,11 @@ namespace cxxplot {
 	}
 
 	template<class inputType>
-	Histogram<inputType>::Histogram(std::vector<inputType>& x)
+	Histogram<inputType>::Histogram(std::vector<inputType>& x, int bins)
 	{
 		this->figure();
 		initialize();
-		draw(x);
+		draw(x, bins);
 	}
 
 	template<class inputType>
@@ -49,14 +49,13 @@ namespace cxxplot {
 
 	template<class inputType>
 	void
-	Histogram<inputType>::draw(std::vector<inputType>& x)
+	Histogram<inputType>::draw(std::vector<inputType>& x, int bins)
 	{
 		PyObject* x_py = this->vector_to_numpy(x);
 
-		PyObject* plot_args = PyTuple_New(1);
-		PyTuple_SetItem(plot_args, 0, x_py);
+		PyObject* histogram_args = generate_args_pytuple(x, bins);
 
-		PythonCalls::pyobject_callobject_with_checks(histogram, plot_args);
+		PythonCalls::pyobject_callobject_with_checks(histogram, histogram_args);
 	}
 
 	template<class inputType>
@@ -68,12 +67,22 @@ namespace cxxplot {
 			PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
 		}
 
-		PyObject* x_py = this->vector_to_numpy(x);
-
-		PyObject* histogram_args = PyTuple_New(1);
-		PyTuple_SetItem(histogram_args, 0, x_py);
+		PyObject* histogram_args = generate_args_pytuple(x);
 
 		PythonCalls::pyobject_call_with_checks(histogram, histogram_args, kwargs);
+	}
+
+	template<class inputType>
+	PyObject*
+	Histogram<inputType>::generate_args_pytuple(std::vector<inputType>& x, int bins)
+	{
+		PyObject* x_py = this->vector_to_numpy(x);
+		PyObject* bins_py = Py_BuildValue("i", bins);
+
+		PyObject* args = PyTuple_New(2);
+		PyTuple_SetItem(args, 0, x_py);
+		PyTuple_SetItem(args, 1, bins_py);
+		return args;
 	}
 
 	template
