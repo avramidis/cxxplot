@@ -7,6 +7,7 @@
 
 #include "pyplot/Histogram.hpp"
 #include "generic/PythonCalls.hpp"
+#include "generic/ConvertToNumpy.hpp"
 #include <stdexcept>
 
 namespace cxxplot {
@@ -51,7 +52,7 @@ namespace cxxplot {
 	void
 	Histogram<inputType>::draw(std::vector<inputType>& x, int bins)
 	{
-		PyObject* x_py = this->vector_to_numpy(x);
+		PyObject* x_py = ConvertToNumpy::vector_to_numpy(x);
 
 		PyObject* histogram_args = generate_args_pytuple(x, bins);
 
@@ -76,7 +77,7 @@ namespace cxxplot {
 	PyObject*
 	Histogram<inputType>::generate_args_pytuple(std::vector<inputType>& x, int bins)
 	{
-		PyObject* x_py = this->vector_to_numpy(x);
+		PyObject* x_py = ConvertToNumpy::vector_to_numpy(x);
 		PyObject* bins_py = Py_BuildValue("i", bins);
 
 		PyObject* args = PyTuple_New(2);

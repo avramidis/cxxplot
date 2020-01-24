@@ -7,8 +7,8 @@
 
 #include "pyplot/Scatter.hpp"
 #include "generic/PythonCalls.hpp"
+#include "generic/ConvertToNumpy.hpp"
 #include <stdexcept>
-#include <iostream>
 
 namespace cxxplot {
 
@@ -47,8 +47,8 @@ namespace cxxplot {
     template<class inputType>
     void
     Scatter<inputType>::draw(std::vector<inputType> &x, std::vector<inputType> &y) {
-        PyObject *x_py = this->vector_to_numpy(x);
-        PyObject *y_py = this->vector_to_numpy(y);
+        PyObject *x_py = ConvertToNumpy::vector_to_numpy(x);
+        PyObject *y_py = ConvertToNumpy::vector_to_numpy(y);
 
         PyObject *scatter_args = PyTuple_New(2);
         PyTuple_SetItem(scatter_args, 0, x_py);
@@ -66,8 +66,8 @@ namespace cxxplot {
             PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
         }
 
-        PyObject *x_py = this->vector_to_numpy(x);
-        PyObject *y_py = this->vector_to_numpy(y);
+        PyObject *x_py = ConvertToNumpy::vector_to_numpy(x);
+        PyObject *y_py = ConvertToNumpy::vector_to_numpy(y);
 
         PyObject *scatter_args = PyTuple_New(2);
         PyTuple_SetItem(scatter_args, 0, x_py);
