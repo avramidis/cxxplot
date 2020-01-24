@@ -17,16 +17,15 @@
 #include <string>
 
 namespace cxxplot {
-    template<class inputType>
-    class CXXPLOT_EXPORT Matplotlib {
-    public:
-        PyObject* matplotlib_pyplot;
-        PyObject* numpy;
+	class CXXPLOT_EXPORT Matplotlib {
+	public:
+		PyObject* matplotlib_pyplot;
+		PyObject* numpy;
 
-        Matplotlib();
+		Matplotlib();
 
-        ~Matplotlib();
-    };
+		~Matplotlib();
+	};
 }
 
 #endif

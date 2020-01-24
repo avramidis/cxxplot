@@ -12,24 +12,15 @@
 #include "PythonInterpreter.hpp"
 
 namespace cxxplot {
-    template<class inputType>
-    Matplotlib<inputType>::Matplotlib() {
-        PythonInterpreter *python_interpreter = PythonInterpreter::getInstance();
+	Matplotlib::Matplotlib()
+	{
+		PythonInterpreter* python_interpreter = PythonInterpreter::getInstance();
 
-        matplotlib_pyplot = PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
-        numpy = PythonCalls::get_pyobject_module_by_string("numpy");
-    }
+		matplotlib_pyplot = PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
+		numpy = PythonCalls::get_pyobject_module_by_string("numpy");
+	}
 
-    template<class inputType>
-    Matplotlib<inputType>::~Matplotlib() {
-    }
-
-    template
-    class Matplotlib<int>;
-
-    template
-    class Matplotlib<float>;
-
-    template
-    class Matplotlib<double>;
+	Matplotlib::~Matplotlib()
+	{
+	}
 }

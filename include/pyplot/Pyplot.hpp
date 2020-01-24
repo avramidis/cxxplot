@@ -15,7 +15,7 @@
 
 namespace cxxplot {
 	template<class inputType>
-	class CXXPLOT_EXPORT Pyplot : public Matplotlib<inputType> {
+	class CXXPLOT_EXPORT Pyplot : public Matplotlib {
 	public:
 		PyObject* xlabel;
 		PyObject* ylabel;
