@@ -113,20 +113,6 @@ namespace cxxplot {
         PythonCalls::pyobject_call_with_checks(lim, lim_args, kwargs);
     }
 
-	template<class inputType>
-	void Pyplot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y,
-			std::vector<std::pair<std::string, std::string>>& args)
-	{
-		draw(x, y, args);
-	}
-
-	template<class inputType>
-	void Pyplot<inputType>::draw(std::vector<inputType>& x, std::vector<inputType>& y,
-			std::vector<std::pair<std::string, std::string>>& args)
-	{
-
-	}
-
 	template
     class Pyplot<int>;
 

@@ -143,6 +143,32 @@ namespace cxxplot {
 		return args;
 	}
 
+	template<class inputType>
+	void Plot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y)
+	{
+		draw(x, y);
+	}
+
+	template<class inputType>
+	void Plot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y,
+			std::vector<std::pair<std::string, std::string>>& args)
+	{
+		draw(x, y, args);
+	}
+
+	template<class inputType>
+	void Plot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt)
+	{
+		draw(x, y, fmt);
+	}
+
+	template<class inputType>
+	void Plot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
+			std::vector<std::pair<std::string, std::string>>& kwargs)
+	{
+		draw(x, y, fmt, kwargs);
+	}
+
 	template
 	class Plot<int>;
 
