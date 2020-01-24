@@ -5,27 +5,20 @@
 // See accompanying file LICENSE
 //---------------------------------------------------------------------------//
 
-#ifndef CPPPYPLOT_MATPLOTLIB_HPP
-#define CPPPYPLOT_MATPLOTLIB_HPP
+#ifndef CXXPLOT_SUBPLOTS_HPP
+#define CXXPLOT_SUBPLOTS_HPP
 
-#define PY_SSIZE_T_CLEAN
-#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
-
-#include <Python.h>
 #include "cxxplot_export.h"
-#include <vector>
-#include <string>
+#include "Matplotlib.hpp"
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Matplotlib {
+	class CXXPLOT_EXPORT Subplots : public Matplotlib {
+	private:
+		PyObject *subplots;
 	public:
-		PyObject* matplotlib_pyplot;
-
-		Matplotlib();
-
-		~Matplotlib();
-
-		void figure();
+		Subplots();
+		~Subplots();
+		void initialize();
 	};
 }
 
