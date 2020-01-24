@@ -14,51 +14,63 @@
 namespace cxxplot {
 
 	template<class inputType>
-	Plot<inputType>::Plot()
+	Plot<inputType>::Plot(bool create_new_figure)
 	{
-		this->figure();
+		if (create_new_figure) {
+			this->figure();
+		}
 		initialize();
 	}
 
 	template<class inputType>
-	Plot<inputType>::Plot(std::vector<inputType>& y)
+	Plot<inputType>::Plot(std::vector<inputType>& y, bool create_new_figure)
 	{
-		this->figure();
+		if (create_new_figure) {
+			this->figure();
+		}
 		initialize();
 		initialize_x_default(y.size());
 		draw(x_default, y);
 	}
 
 	template<class inputType>
-	Plot<inputType>::Plot(std::vector<inputType>& x, std::vector<inputType>& y)
+	Plot<inputType>::Plot(std::vector<inputType>& x, std::vector<inputType>& y, bool create_new_figure)
 	{
-		this->figure();
+		if (create_new_figure) {
+			this->figure();
+		}
 		initialize();
 		draw(x, y);
 	}
 
 	template<class inputType>
-	Plot<inputType>::Plot(std::vector<inputType>& y, std::string fmt)
+	Plot<inputType>::Plot(std::vector<inputType>& y, std::string fmt, bool create_new_figure)
 	{
-		this->figure();
+		if (create_new_figure) {
+			this->figure();
+		}
 		initialize();
 		initialize_x_default(y.size());
 		draw(x_default, y, fmt);
 	}
 
 	template<class inputType>
-	Plot<inputType>::Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt)
+	Plot<inputType>::Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt, bool create_new_figure)
 	{
-		this->figure();
+		if (create_new_figure) {
+			this->figure();
+		}
 		initialize();
 		draw(x, y, fmt);
 	}
 
 	template<class inputType>
 	Plot<inputType>::Plot(std::vector<inputType>& x, std::vector<inputType>& y,
-			std::vector<std::pair<std::string, std::string>>& args)
+			std::vector<std::pair<std::string, std::string>>& args, bool create_new_figure)
 	{
-		this->figure();
+		if (create_new_figure) {
+			this->figure();
+		}
 		initialize();
 		draw(x, y, args);
 	}
