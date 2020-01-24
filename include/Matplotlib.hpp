@@ -24,6 +24,8 @@ namespace cxxplot {
 		Matplotlib();
 
 		~Matplotlib();
+
+		void figure();
 	};
 }
 

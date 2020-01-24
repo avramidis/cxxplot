@@ -22,4 +22,9 @@ namespace cxxplot {
 	Matplotlib::~Matplotlib()
 	{
 	}
+
+	void Matplotlib::figure() {
+		PyObject *figure = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "figure");
+		PythonCalls::pyobject_callobject_with_checks(figure);
+	}
 }

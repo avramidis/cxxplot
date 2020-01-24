@@ -25,8 +25,6 @@ namespace cxxplot {
 
 		~Pyplot();
 
-		void figure();
-
 		void
 		set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
