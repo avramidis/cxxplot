@@ -20,7 +20,6 @@ namespace cxxplot {
 	class CXXPLOT_EXPORT Matplotlib {
 	public:
 		PyObject* matplotlib_pyplot;
-		PyObject* numpy;
 
 		Matplotlib();
 

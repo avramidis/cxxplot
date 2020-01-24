@@ -17,7 +17,6 @@ namespace cxxplot {
 		PythonInterpreter* python_interpreter = PythonInterpreter::getInstance();
 
 		matplotlib_pyplot = PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
-		numpy = PythonCalls::get_pyobject_module_by_string("numpy");
 	}
 
 	Matplotlib::~Matplotlib()
