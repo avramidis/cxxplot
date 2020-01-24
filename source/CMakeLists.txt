@@ -14,7 +14,9 @@ target_sources(cxxplot PRIVATE
         ${CMAKE_SOURCE_DIR}/source/pyplot/Scatter.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Histogram.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp
-        ${CMAKE_SOURCE_DIR}/source/generic/PythonCalls.cpp)
+        ${CMAKE_SOURCE_DIR}/source/pyplot/Subplots.cpp
+        ${CMAKE_SOURCE_DIR}/source/generic/PythonCalls.cpp
+        ${CMAKE_SOURCE_DIR}/source/generic/ConvertToNumpy.cpp)
 
 target_include_directories(cxxplot PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
