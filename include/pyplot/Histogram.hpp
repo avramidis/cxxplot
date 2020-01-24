@@ -19,7 +19,7 @@ namespace cxxplot {
 
 	public:
 		Histogram();
-		explicit Histogram(std::vector<inputType>& x);
+		explicit Histogram(std::vector<inputType>& x, int bins = 10);
 		explicit Histogram(std::vector<inputType>& x, std::vector<std::pair<std::string, std::string>>& args);
 		~Histogram();
 
@@ -28,10 +28,11 @@ namespace cxxplot {
 		initialize();
 
 		void
-		draw(std::vector<inputType>& x);
+		draw(std::vector<inputType>& x, int bins = 10);
 
 		void
 		draw(std::vector<inputType>& x, std::vector<std::pair<std::string, std::string>>& args);
+		PyObject* generate_args_pytuple(std::vector<inputType>& x, int bins = 10);
 	};
 }
 

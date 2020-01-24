@@ -29,6 +29,12 @@ namespace cxxplot {
 				std::vector<std::pair<std::string, std::string>>& args);
 		~Plot();
 
+		void add_data(std::vector<inputType>& x, std::vector<inputType>& y);
+		void add_data(std::vector<inputType>& x, std::vector<inputType>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
+		void add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
+		void add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
+				std::vector<std::pair<std::string, std::string>>& kwargs);
 	private:
 		void
 		initialize_x_default(int x_size);
