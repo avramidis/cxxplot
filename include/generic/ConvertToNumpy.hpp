@@ -8,6 +8,8 @@
 #ifndef CXXPLOT_CONVERTTONUMPY_HPP
 #define CXXPLOT_CONVERTTONUMPY_HPP
 
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
+
 #include <Python.h>
 #include "cxxplot_export.h"
 #include "numpy/arrayobject.h"
