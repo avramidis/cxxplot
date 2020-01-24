@@ -24,8 +24,11 @@ main()
 		x.push_back(d(gen));
 	}
 
-	cxxplot::Histogram<double> histogram(x);
-	histogram.show_plot();
+	cxxplot::Histogram<double> histogram_1(x);
+	histogram_1.show_plot();
+
+	cxxplot::Histogram<double> histogram_2(x, 100);
+	histogram_2.show_plot();
 
 	return 0;
 }
