@@ -15,7 +15,7 @@
 
 namespace cxxplot {
 	template<class inputType>
-	class CXXPLOT_EXPORT Pyplot : public Matplotlib<inputType> {
+	class CXXPLOT_EXPORT Pyplot : public Matplotlib {
 	public:
 		PyObject* xlabel;
 		PyObject* ylabel;
@@ -24,8 +24,6 @@ namespace cxxplot {
 		Pyplot();
 
 		~Pyplot();
-
-		void figure();
 
 		void
 		set_xlabel(std::string const& label, std::map<std::string, std::string> const& args = {});
