@@ -13,30 +13,44 @@
 #include <map>
 
 namespace cxxplot {
-    template<class inputType>
-    class CXXPLOT_EXPORT Plot : public Pyplot<inputType> {
-    private:
-        PyObject* plot;
+	template<class inputType>
+	class CXXPLOT_EXPORT Plot : public Pyplot<inputType> {
+	private:
+		PyObject* plot;
+		std::vector<inputType> x_default;
 
-    public:
+	public:
 		Plot();
-        explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y);
-        explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
-                std::vector<std::pair<std::string, std::string>>& args);
-        ~Plot();
+		explicit Plot(std::vector<inputType>& y);
+		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y);
+		explicit Plot(std::vector<inputType>& y, std::string fmt);
+		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
+		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
+		~Plot();
 
-    private:
-        void
-        initialize();
+	private:
+		void
+		initialize_x_default(int x_size);
 
-        void
-        draw(std::vector<inputType>& x, std::vector<inputType>& y);
+		void
+		initialize();
 
-        void
-        draw(std::vector<inputType>& x, std::vector<inputType>& y,
-                std::vector<std::pair<std::string, std::string>>& args);
+		void
+		draw(std::vector<inputType>& x, std::vector<inputType>& y);
 
-    };
+		void
+		draw(std::vector<inputType>& x, std::vector<inputType>& y,
+				std::vector<std::pair<std::string, std::string>>& args);
+
+		void draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
+
+		void
+		draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
+				std::vector<std::pair<std::string, std::string>>& kwargs);
+
+		PyObject* generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt = "");
+	};
 }
 
 #endif
