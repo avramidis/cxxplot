@@ -15,4 +15,4 @@ build_script:
   - mkdir build
   - cd build
   - cmake ..
-  - cmake --build . --target ALL_BUILD --config Release
+  - cmake --build . --target ALL_BUILD --config Release -DCMAKE_BUIILD_TYPE=Release -DENABLE_EXAMPLES=ON -DENABLE_TESTS=ON
