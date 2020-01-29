@@ -12,7 +12,7 @@ build:ubuntu:
     - cd /builds/$CI_PROJECT_PATH
     - mkdir build
     - cd build
-    - cmake ..
+    - cmake -DCMAKE_BUIILD_TYPE=Release -DENABLE_EXAMPLES=ON -DENABLE_TESTS=ON ..
     - make
   artifacts:
     paths:

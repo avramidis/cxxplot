@@ -8,19 +8,19 @@ include(GNUInstallDirs)
 add_library(cxxplot SHARED)
 
 target_sources(cxxplot PRIVATE
-        ${CMAKE_SOURCE_DIR}/source/PythonInterpreter.cpp
-        ${CMAKE_SOURCE_DIR}/source/Matplotlib.cpp
-        ${CMAKE_SOURCE_DIR}/source/pyplot/Plot.cpp
-        ${CMAKE_SOURCE_DIR}/source/pyplot/Scatter.cpp
-        ${CMAKE_SOURCE_DIR}/source/pyplot/Histogram.cpp
-        ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp
-        ${CMAKE_SOURCE_DIR}/source/pyplot/Subplot.cpp
-        ${CMAKE_SOURCE_DIR}/source/generic/PythonCalls.cpp
-        ${CMAKE_SOURCE_DIR}/source/generic/ConvertToNumpy.cpp)
+        PythonInterpreter.cpp
+        Matplotlib.cpp
+        pyplot/Plot.cpp
+        pyplot/Scatter.cpp
+        pyplot/Histogram.cpp
+        pyplot/Pyplot.cpp
+        pyplot/Subplot.cpp
+        generic/PythonCalls.cpp
+        generic/ConvertToNumpy.cpp)
 
 target_include_directories(cxxplot PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>/..
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 target_link_libraries(cxxplot PRIVATE Python3::Python Python3::NumPy)

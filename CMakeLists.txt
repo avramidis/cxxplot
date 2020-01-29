@@ -34,5 +34,14 @@ include(dependencies/CMakeLists.txt)
 add_subdirectory(source)
 include(GenerateExportHeader)
 generate_export_header(cxxplot)
-add_subdirectory(examples)
-#add_subdirectory(tests)
+
+option(ENABLE_EXAMPLES "Enable examples" OFF)
+option(ENABLE_TESTS "Enable tests" OFF)
+
+if (ENABLE_EXAMPLES)
+    add_subdirectory(examples)
+endif ()
+
+if (ENABLE_TESTS)
+    #add_subdirectory(tests)
+endif ()
