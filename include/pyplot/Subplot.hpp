@@ -5,20 +5,22 @@
 // See accompanying file LICENSE
 //---------------------------------------------------------------------------//
 
-#ifndef CXXPLOT_SUBPLOTS_HPP
-#define CXXPLOT_SUBPLOTS_HPP
+#ifndef CXXPLOT_SUBPLOT_HPP
+#define CXXPLOT_SUBPLOT_HPP
 
 #include "cxxplot_export.h"
 #include "Matplotlib.hpp"
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Subplots : public Matplotlib {
+	class CXXPLOT_EXPORT Subplot : public Matplotlib {
 	private:
-		PyObject *subplots;
+		PyObject* subplots;
+		int number_rows, number_columns;
 	public:
-		Subplots();
-		~Subplots();
+		Subplot(int number_rows, int number_columns);
+		~Subplot();
 		void initialize();
+		void set_subplot_index(int index);
 	};
 }
 

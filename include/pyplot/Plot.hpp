@@ -20,13 +20,13 @@ namespace cxxplot {
 		std::vector<inputType> x_default;
 
 	public:
-		Plot();
-		explicit Plot(std::vector<inputType>& y);
-		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y);
-		explicit Plot(std::vector<inputType>& y, std::string fmt);
-		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
+		Plot(bool create_new_figure=true);
+		explicit Plot(std::vector<inputType>& y, bool create_new_figure=true);
+		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, bool create_new_figure=true);
+		explicit Plot(std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
+		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
+				std::vector<std::pair<std::string, std::string>>& args, bool create_new_figure=true);
 		~Plot();
 
 		void add_data(std::vector<inputType>& x, std::vector<inputType>& y);
