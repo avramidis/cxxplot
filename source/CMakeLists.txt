@@ -33,19 +33,23 @@ set_target_properties(cxxplot PROPERTIES
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_definitions(cxxplot PUBLIC cxxplot_EXPORT)
 
-    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cxxplot.dll
-            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:plot_1>"
-            VERBATIM)
-    add_custom_target(copyddlexamples ALL
-            DEPENDS ${CMAKE_BINARY_DIR}/examples/cxxplot.dll cxxplot
-            VERBATIM)
+    if (ENABLE_EXAMPLES)
+        add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cxxplot.dll
+                COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:plot_1>"
+                VERBATIM)
+        add_custom_target(copyddlexamples ALL
+                DEPENDS ${CMAKE_BINARY_DIR}/examples/cxxplot.dll cxxplot
+                VERBATIM)
+    endif ()
 
-    #    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cxxplot.dll
-    #            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:test_timer>"
-    #            VERBATIM)
-    #    add_custom_target(copyddltests ALL
-    #            DEPENDS ${CMAKE_BINARY_DIR}/tests/cxxplot.dll cxxplot
-    #            VERBATIM)
+    if (ENABLE_TESTS)
+        #    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cxxplot.dll
+        #            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:test_timer>"
+        #            VERBATIM)
+        #    add_custom_target(copyddltests ALL
+        #            DEPENDS ${CMAKE_BINARY_DIR}/tests/cxxplot.dll cxxplot
+        #            VERBATIM)
+    endif ()
 endif ()
 
 install(TARGETS cxxplot EXPORT cxxplotTargets
