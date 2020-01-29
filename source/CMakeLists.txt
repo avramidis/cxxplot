@@ -14,13 +14,13 @@ target_sources(cxxplot PRIVATE
         ${CMAKE_SOURCE_DIR}/source/pyplot/Scatter.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Histogram.cpp
         ${CMAKE_SOURCE_DIR}/source/pyplot/Pyplot.cpp
-        ${CMAKE_SOURCE_DIR}/source/pyplot/Subplots.cpp
+        ${CMAKE_SOURCE_DIR}/source/pyplot/Subplot.cpp
         ${CMAKE_SOURCE_DIR}/source/generic/PythonCalls.cpp
         ${CMAKE_SOURCE_DIR}/source/generic/ConvertToNumpy.cpp)
 
 target_include_directories(cxxplot PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 target_link_libraries(cxxplot PRIVATE Python3::Python Python3::NumPy)

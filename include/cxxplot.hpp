@@ -10,6 +10,7 @@
 
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 
+#include "pyplot/Subplot.hpp"
 #include "pyplot/Plot.hpp"
 #include "pyplot/Scatter.hpp"
 #include <pyplot/Histogram.hpp>
