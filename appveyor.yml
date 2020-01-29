@@ -14,5 +14,5 @@ build_script:
   - pip install numpy matplotlib
   - mkdir build
   - cd build
-  - cmake ..
-  - cmake --build . --target ALL_BUILD --config Release -DCMAKE_BUIILD_TYPE=Release -DENABLE_EXAMPLES=ON -DENABLE_TESTS=ON
+  - cmake -DCMAKE_BUIILD_TYPE=Release -DENABLE_EXAMPLES=ON -DENABLE_TESTS=ON  ..
+  - cmake --build . --target ALL_BUILD --config Release
