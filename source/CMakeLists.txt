@@ -15,6 +15,7 @@ target_sources(cxxplot PRIVATE
         pyplot/Histogram.cpp
         pyplot/Pyplot.cpp
         pyplot/Subplot.cpp
+        pyplot/Axis.cpp
         generic/PythonCalls.cpp
         generic/ConvertToNumpy.cpp)
 
