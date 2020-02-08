@@ -12,6 +12,15 @@ branch | Windows | Ubuntu
 ### Introduction
 cxxplot is a C++ plotting library that uses matplotlib (https://matplotlib.org/). Currently, cxxplot is under development and it is not suited for production.  
 
+### Available plots
+
+Currently, cxxplot supports the following plots:
+
+* plot
+* scatter
+* histogram
+* subplots
+
 #### More information
 * See [doc/INSTALL.md](doc/INSTALL.md) for installation instructions.
 * See [doc/EXAMPLES.md](doc/EXAMPLES.md) for examples using cxxplot.

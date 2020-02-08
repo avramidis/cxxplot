@@ -15,6 +15,7 @@ target_sources(cxxplot PRIVATE
         pyplot/Histogram.cpp
         pyplot/Pyplot.cpp
         pyplot/Subplot.cpp
+        pyplot/Axis.cpp
         generic/PythonCalls.cpp
         generic/ConvertToNumpy.cpp)
 
@@ -33,7 +34,7 @@ set_target_properties(cxxplot PROPERTIES
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_definitions(cxxplot PUBLIC cxxplot_EXPORT)
 
-    if (ENABLE_EXAMPLES)
+    if (CXXPLOT_ENABLE_EXAMPLES)
         add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/examples/cxxplot.dll
                 COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:plot_1>"
                 VERBATIM)
@@ -42,13 +43,13 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
                 VERBATIM)
     endif ()
 
-    if (ENABLE_TESTS)
-        #    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cxxplot.dll
-        #            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:test_timer>"
-        #            VERBATIM)
-        #    add_custom_target(copyddltests ALL
-        #            DEPENDS ${CMAKE_BINARY_DIR}/tests/cxxplot.dll cxxplot
-        #            VERBATIM)
+    if (CXXPLOT_ENABLE_TESTS)
+        add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/tests/cxxplot.dll
+                COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:cxxplot>" "$<TARGET_FILE_DIR:test_python_interpreter>"
+                VERBATIM)
+        add_custom_target(copyddltests ALL
+                DEPENDS ${CMAKE_BINARY_DIR}/tests/cxxplot.dll cxxplot
+                VERBATIM)
     endif ()
 endif ()
 
