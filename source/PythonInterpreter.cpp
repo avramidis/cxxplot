@@ -8,26 +8,37 @@
 #include "PythonInterpreter.hpp"
 #include <Python.h>
 #include <iostream>
+#include <stdexcept>
 
 namespace cxxplot {
 
     PythonInterpreter* PythonInterpreter::instance = nullptr;
 
-    PythonInterpreter::PythonInterpreter() {
+    PythonInterpreter::PythonInterpreter()
+    {
         Py_Initialize();
-        PyRun_SimpleString("import sys\n"
-                           "sys.argv.append('')\n");
-        //"print(sys.argv)\n");
+        if (Py_IsInitialized()==0) {
+            throw std::runtime_error("Python3 interpreter could not be initialized!");
+        }
+
+        if (PyRun_SimpleString("import sys\n"
+                               "sys.argv.append('')\n")==-1) {
+            //"print(sys.argv)\n");
+            throw std::runtime_error("Python3 interpreter could not import sys!");
+        }
     }
 
-    PythonInterpreter::~PythonInterpreter() {
-        if (Py_FinalizeEx() < 0) {
+    PythonInterpreter::~PythonInterpreter()
+    {
+        if (Py_FinalizeEx()<0) {
             PyErr_Print();
             std::cout << "Warning: Python interpreter could not be finalized!" << std::endl;
         }
     }
 
-    PythonInterpreter *PythonInterpreter::getInstance() {
+    PythonInterpreter*
+    PythonInterpreter::getInstance()
+    {
         if (!instance) {
             instance = new PythonInterpreter();
         }
