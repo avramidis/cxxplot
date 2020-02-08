@@ -12,8 +12,19 @@ build:ubuntu:
     - cd /builds/$CI_PROJECT_PATH
     - mkdir build
     - cd build
-    - cmake -DCMAKE_BUIILD_TYPE=Release -DENABLE_EXAMPLES=ON -DENABLE_TESTS=ON ..
+    - cmake -DCMAKE_BUIILD_TYPE=Release -DCXXPLOT_ENABLE_EXAMPLES=ON -DCXXPLOT_ENABLE_TESTS=ON ..
     - make
+  artifacts:
+    paths:
+      - build
+
+test:ubuntu:
+  stage: test
+  tags:
+    - docker
+  script:
+    - cd /builds/$CI_PROJECT_PATH/build
+    - ctest
   artifacts:
     paths:
       - build

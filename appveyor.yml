@@ -14,5 +14,10 @@ build_script:
   - pip install numpy matplotlib
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUIILD_TYPE=Release -DENABLE_EXAMPLES=ON -DENABLE_TESTS=ON  ..
+  - cmake -DCMAKE_BUIILD_TYPE=Release -DCXXPLOT_ENABLE_EXAMPLES=ON -DCXXPLOT_ENABLE_TESTS=ON  ..
   - cmake --build . --target ALL_BUILD --config Release
+
+test_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - cd build
+  - ctest -C Release

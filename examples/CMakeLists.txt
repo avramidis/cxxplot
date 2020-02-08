@@ -4,8 +4,6 @@
 # See accompanying file LICENSE
 #---------------------------------------------------------------------------//
 
-cmake_minimum_required(VERSION 3.15.3)
-
 function(ADD_EXAMPLE EXE_NAME SRC_NAME)
     message(STATUS "Generating ${EXE_NAME} target")
 

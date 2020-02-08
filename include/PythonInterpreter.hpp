@@ -27,4 +27,4 @@ namespace cxxplot {
     };
 }
 
-#endif //CXXPLOT_PYTHONINTERPRETER_HPP
+#endif
