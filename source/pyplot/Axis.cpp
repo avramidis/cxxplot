@@ -37,6 +37,8 @@ namespace cxxplot {
 
     Axis::Axis(std::vector<std::pair<std::string, std::string>>& args)
     {
+        initialize();
+
         PyObject *kwargs = PyDict_New();
         for (auto &v:args) {
             PyDict_SetItemString(kwargs, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
