@@ -47,7 +47,7 @@ Build with gcc navigate to the directory with
 ```bash
 mkdir build-gcc
 cd build-gcc
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_EXAMPLES=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCXXPLOT_ENABLE_EXAMPLES=ON ..
 make -j4
 sudo make install
 ```

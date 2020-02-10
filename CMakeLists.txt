@@ -35,8 +35,8 @@ add_subdirectory(source)
 include(GenerateExportHeader)
 generate_export_header(cxxplot)
 
-option(ENABLE_EXAMPLES "Enable examples" OFF)
-option(ENABLE_TESTS "Enable tests" OFF)
+option(CXXPLOT_ENABLE_EXAMPLES "Enable examples" OFF)
+option(CXXPLOT_ENABLE_TESTS "Enable tests" OFF)
 
 if (CXXPLOT_ENABLE_EXAMPLES)
     add_subdirectory(examples)
