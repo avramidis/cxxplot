@@ -13,9 +13,9 @@ main()
 {
     std::cout << "Running axis_1 example" << std::endl;
 
-    std::vector<std::pair<std::string, std::string>> args;
-    args.emplace_back("color", "r");
-    args.emplace_back("marker", "o");
+    cxxplot::Kwargs args;
+    args.add_kwarg("color", "r");
+    args.add_kwarg("marker", "o");
 
     std::vector<double> x{1.0, 2.0};
     std::vector<double> y{5.0, 3.0};

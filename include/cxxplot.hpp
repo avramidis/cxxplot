@@ -13,7 +13,8 @@
 #include "pyplot/Subplot.hpp"
 #include "pyplot/Plot.hpp"
 #include "pyplot/Scatter.hpp"
-#include <pyplot/Histogram.hpp>
+#include "pyplot/Histogram.hpp"
 #include "pyplot/Axis.hpp"
+#include "pyplot/Kwargs.hpp"
 
 #endif
