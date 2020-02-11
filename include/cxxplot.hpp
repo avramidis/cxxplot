@@ -15,6 +15,7 @@
 #include "pyplot/Scatter.hpp"
 #include "pyplot/Histogram.hpp"
 #include "pyplot/Axis.hpp"
+#include "pyplot/Bar.hpp"
 #include "pyplot/Kwargs.hpp"
 
 #endif
