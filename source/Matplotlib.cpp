@@ -21,6 +21,7 @@ namespace cxxplot {
 
 	Matplotlib::~Matplotlib()
 	{
+        Py_DECREF(matplotlib_pyplot);
 	}
 
 	void Matplotlib::figure() {
