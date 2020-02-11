@@ -13,9 +13,9 @@ main()
 {
 	std::cout << "Running plot_1 example" << std::endl;
 
-	std::vector<std::pair<std::string, std::string>> args;
-	args.emplace_back("color", "r");
-	args.emplace_back("marker", "o");
+	cxxplot::Kwargs args;
+	args.add_kwarg("color", "r");
+	args.add_kwarg("marker", "o");
 
 	std::vector<std::vector<double>> x_double(10, std::vector<double>(10, 0));
 	std::vector<std::vector<double>> y_double(10, std::vector<double>(10, 10));

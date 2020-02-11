@@ -65,6 +65,7 @@ namespace cxxplot {
         case Axis_option::normal  : return "normal";
         case Axis_option::image  : return "image";
         case Axis_option::square  : return "square";
+        default: return "";
         }
     }
 
