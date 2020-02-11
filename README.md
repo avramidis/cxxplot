@@ -21,6 +21,8 @@ Currently, cxxplot supports the following plots:
 * histogram
 * subplots
 
+The examples folder includes code examples with most of the features that are supported.
+
 #### More information
 * See [doc/INSTALL.md](doc/INSTALL.md) for installation instructions.
 * See [doc/EXAMPLES.md](doc/EXAMPLES.md) for examples using cxxplot.
