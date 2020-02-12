@@ -26,8 +26,7 @@ namespace cxxplot {
 		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
-		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
-				Kwargs& args, bool create_new_figure=true);
+		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args, bool create_new_figure=true);
 		~Plot();
 
 		void add_data(std::vector<inputType>& x, std::vector<inputType>& y);

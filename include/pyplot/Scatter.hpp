@@ -9,6 +9,7 @@
 #define CXXPLOT_SCATTER_HPP
 
 #include "Pyplot.hpp"
+#include "Kwargs.hpp"
 #include <string>
 #include <map>
 
@@ -21,8 +22,7 @@ namespace cxxplot {
 	public:
 		Scatter();
 		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y);
-		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
+		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args);
 		~Scatter();
 
 	private:
@@ -33,8 +33,7 @@ namespace cxxplot {
 		draw(std::vector<inputType>& x, std::vector<inputType>& y);
 
 		void
-		draw(std::vector<inputType>& x, std::vector<inputType>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
+		draw(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args);
 
 	};
 }
