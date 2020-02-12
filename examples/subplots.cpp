@@ -25,7 +25,7 @@ main()
 	cxxplot::Plot<double> plot_2(y_2, false);
 	plot_2.set_xlabel("x label");
 	plot_2.set_ylabel("y label");
-	plot_2.show_plot();
+    plot_2.show();
 
 	return 0;
 }

@@ -32,7 +32,7 @@ main()
 		plot_double.add_data(x_double[i], y_double[i], args);
 	}
 
-	plot_double.show_plot();
+    plot_double.show();
 
 	return 0;
 }

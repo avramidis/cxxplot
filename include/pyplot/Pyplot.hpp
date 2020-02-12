@@ -19,7 +19,7 @@ namespace cxxplot {
 	public:
 		PyObject* xlabel;
 		PyObject* ylabel;
-		PyObject* show;
+		PyObject* show_py_object;
 
 		Pyplot();
 
@@ -32,7 +32,7 @@ namespace cxxplot {
 		set_ylabel(std::string const& label, std::map<std::string, std::string> const& args = {});
 
 		void
-		show_plot(bool blocked = true);
+		show(bool blocked = true);
 
 		void
 		savefig(std::string const& fname);

@@ -29,7 +29,7 @@ main()
     //cxxplot::Axis axis(cxxplot::Axis_option::square);
     cxxplot::Axis axis(0, 100, 0, 100);
 
-    plot.show_plot();
+    plot.show();
 
     return 0;
 }

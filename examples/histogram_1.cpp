@@ -25,10 +25,10 @@ main()
 	}
 
 	cxxplot::Histogram<double> histogram_1(x);
-	histogram_1.show_plot();
+    histogram_1.show();
 
 	cxxplot::Histogram<double> histogram_2(x, 100);
-	histogram_2.show_plot();
+    histogram_2.show();
 
 	return 0;
 }

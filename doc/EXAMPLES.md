@@ -32,7 +32,7 @@ int main()
     cxxplot::Plot<int> plot_int(x_int, y_int, args);
     plot_int.set_xlabel("x label");
     plot_int.set_ylabel("y label");
-    plot_int.show_plot();
+    plot_int.show();
 }
 ```
 

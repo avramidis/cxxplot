@@ -25,7 +25,7 @@ main()
     plot_double.set_ylabel("y label");
 	plot_double.set_xlim(-10, 10);
 	plot_double.set_ylim(0, 8);
-    plot_double.show_plot(false);
+    plot_double.show(false);
 
     std::vector<float> x_float{1.0, 2.0};
     std::vector<float> y_float{2.0, 3.0};
@@ -33,7 +33,7 @@ main()
     cxxplot::Plot<float> plot_float(x_float, y_float, args);
     plot_float.set_xlabel("x label");
     plot_float.set_ylabel("y label");
-    plot_float.show_plot();
+    plot_float.show();
 
 	return 0;
 }

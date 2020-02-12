@@ -17,12 +17,12 @@ main()
     cxxplot::Plot<double> plot_1(y);
     plot_1.set_xlabel("x label");
     plot_1.set_ylabel("y label");
-    plot_1.show_plot();
+    plot_1.show();
 
     cxxplot::Plot<double> plot_2(y, "ro");
     plot_2.set_xlabel("x label");
     plot_2.set_ylabel("y label");
-    plot_2.show_plot();
+    plot_2.show();
 
     cxxplot::Kwargs args;
     args.add_kwarg("color", "k");
@@ -33,7 +33,7 @@ main()
     plot_3.set_ylabel("y label");
     plot_3.set_xlim(0, 12);
     plot_3.set_ylim(3, 60);
-    plot_3.show_plot();
+    plot_3.show();
 
     return 0;
 }

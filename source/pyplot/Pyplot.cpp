@@ -56,18 +56,18 @@ namespace cxxplot {
 
     template<class inputType>
     void
-    Pyplot<inputType>::show_plot(bool blocked) {
-        show = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "show");
+    Pyplot<inputType>::show(bool blocked) {
+        show_py_object = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "show");
 
         if (blocked) {
-            PythonCalls::pyobject_callobject_with_checks(show);
+            PythonCalls::pyobject_callobject_with_checks(show_py_object);
         } else {
             PyObject *dict;
             dict = Py_BuildValue("{s:i}", "block", 0);
 
             PyObject *args = PyTuple_New(0);
 
-            PythonCalls::pyobject_call_with_checks(show, args, dict);
+            PythonCalls::pyobject_call_with_checks(show_py_object, args, dict);
         }
     }
 

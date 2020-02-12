@@ -22,7 +22,7 @@ main()
 
     cxxplot::Bar<double> bar(x, height);
     bar.add_data(x, height, 0.8, height);
-    bar.show_plot();
+    bar.show();
 
     return 0;
 }

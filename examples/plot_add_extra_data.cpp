@@ -33,7 +33,7 @@ main()
 
 	plot_int.add_data(x_int_2, y_int_2, args_2);
 
-	plot_int.show_plot();
+    plot_int.show();
 
 	return 0;
 }
