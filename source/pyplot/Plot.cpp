@@ -6,6 +6,7 @@
 //---------------------------------------------------------------------------//
 
 #include "pyplot/Plot.hpp"
+#include "pyplot/Kwargs.hpp"
 #include "generic/PythonCalls.hpp"
 #include "generic/ConvertToNumpy.hpp"
 #include <stdexcept>
@@ -66,7 +67,7 @@ namespace cxxplot {
 
 	template<class inputType>
 	Plot<inputType>::Plot(std::vector<inputType>& x, std::vector<inputType>& y,
-			std::vector<std::pair<std::string, std::string>>& args, bool create_new_figure)
+			Kwargs& args, bool create_new_figure)
 	{
 		if (create_new_figure) {
 			this->figure();
@@ -107,16 +108,11 @@ namespace cxxplot {
 	template<class inputType>
 	void
 	Plot<inputType>::draw(std::vector<inputType>& x, std::vector<inputType>& y,
-			std::vector<std::pair<std::string, std::string>>& kwargs)
+			Kwargs& kwargs)
 	{
-		PyObject* kwargs_py = PyDict_New();
-		for (auto& v:kwargs) {
-			PyDict_SetItemString(kwargs_py, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
-		}
+	    PyObject* args = generate_args_pytuple(x, y);
 
-		PyObject* args = generate_args_pytuple(x, y);
-
-		PythonCalls::pyobject_call_with_checks(plot, args, kwargs_py);
+		PythonCalls::pyobject_call_with_checks(plot, args, kwargs.get_pydict());
 	}
 
 	template<class inputType>
@@ -129,16 +125,11 @@ namespace cxxplot {
 
 	template<class inputType>
 	void Plot<inputType>::draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
-			std::vector<std::pair<std::string, std::string>>& kwargs)
+			Kwargs& kwargs)
 	{
-		PyObject* kwargs_py = PyDict_New();
-		for (auto& v:kwargs) {
-			PyDict_SetItemString(kwargs_py, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
-		}
-
 		PyObject* args = generate_args_pytuple(x, y, fmt);
 
-		PythonCalls::pyobject_call_with_checks(plot, args, kwargs_py);
+		PythonCalls::pyobject_call_with_checks(plot, args, kwargs.get_pydict());
 	}
 
 	template<class inputType>
@@ -164,7 +155,7 @@ namespace cxxplot {
 
 	template<class inputType>
 	void Plot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y,
-			std::vector<std::pair<std::string, std::string>>& args)
+			Kwargs& args)
 	{
 		draw(x, y, args);
 	}
@@ -177,7 +168,7 @@ namespace cxxplot {
 
 	template<class inputType>
 	void Plot<inputType>::add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
-			std::vector<std::pair<std::string, std::string>>& kwargs)
+			Kwargs& kwargs)
 	{
 		draw(x, y, fmt, kwargs);
 	}

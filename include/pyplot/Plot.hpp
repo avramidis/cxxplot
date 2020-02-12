@@ -9,6 +9,7 @@
 #define CPPPYPLOT_PLOT_HPP
 
 #include "Pyplot.hpp"
+#include "Kwargs.hpp"
 #include <string>
 #include <map>
 
@@ -20,21 +21,21 @@ namespace cxxplot {
 		std::vector<inputType> x_default;
 
 	public:
-		Plot(bool create_new_figure=true);
+		explicit Plot(bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& y, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
 		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
-				std::vector<std::pair<std::string, std::string>>& args, bool create_new_figure=true);
+				Kwargs& args, bool create_new_figure=true);
 		~Plot();
 
 		void add_data(std::vector<inputType>& x, std::vector<inputType>& y);
 		void add_data(std::vector<inputType>& x, std::vector<inputType>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
+				Kwargs& args);
 		void add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
 		void add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
-				std::vector<std::pair<std::string, std::string>>& kwargs);
+				Kwargs& kwargs);
 	private:
 		void
 		initialize_x_default(int x_size);
@@ -47,13 +48,13 @@ namespace cxxplot {
 
 		void
 		draw(std::vector<inputType>& x, std::vector<inputType>& y,
-				std::vector<std::pair<std::string, std::string>>& args);
+				Kwargs& args);
 
 		void draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
 
 		void
 		draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
-				std::vector<std::pair<std::string, std::string>>& kwargs);
+                Kwargs& kwargs);
 
 		PyObject* generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt = "");
 	};

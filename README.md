@@ -20,6 +20,9 @@ Currently, cxxplot supports the following plots:
 * scatter
 * histogram
 * subplots
+* bar
+
+The examples folder includes code examples with most of the features that are supported.
 
 #### More information
 * See [doc/INSTALL.md](doc/INSTALL.md) for installation instructions.

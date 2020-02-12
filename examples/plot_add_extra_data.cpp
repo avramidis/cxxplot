@@ -13,9 +13,9 @@ main()
 {
 	std::cout << "Running plot_1 example" << std::endl;
 
-	std::vector<std::pair<std::string, std::string>> args_1;
-	args_1.emplace_back("color", "r");
-	args_1.emplace_back("marker", "o");
+	cxxplot::Kwargs args_1;
+	args_1.add_kwarg("color", "r");
+	args_1.add_kwarg("marker", "o");
 
 	std::vector<int> x_int_1{1, 2};
 	std::vector<int> y_int_1{2, 3};
@@ -24,16 +24,16 @@ main()
 	plot_int.set_xlabel("x label");
 	plot_int.set_ylabel("y label");
 
-	std::vector<std::pair<std::string, std::string>> args_2;
-	args_2.emplace_back("color", "k");
-	args_2.emplace_back("marker", ".");
+	cxxplot::Kwargs args_2;
+	args_2.add_kwarg("color", "k");
+	args_2.add_kwarg("marker", ".");
 
 	std::vector<int> x_int_2{1, 2};
 	std::vector<int> y_int_2{0, 4};
 
 	plot_int.add_data(x_int_2, y_int_2, args_2);
 
-	plot_int.show_plot();
+    plot_int.show();
 
 	return 0;
 }

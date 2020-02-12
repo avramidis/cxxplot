@@ -22,9 +22,9 @@ The example below plots a simple line using integer numbers with red color and a
 #include "cxxplot.hpp"
 int main()
 {
-    std::vector<std::pair<std::string, std::string>> args;
-    args.emplace_back("color", "r");
-    args.emplace_back("marker", "o");
+    cxxplot::Kwargs args;
+    args.add_kwarg("color", "r");
+    args.add_kwarg("marker", "o");
     
     std::vector<int> x_int{1, 2};
     std::vector<int> y_int{2, 3};
@@ -32,7 +32,7 @@ int main()
     cxxplot::Plot<int> plot_int(x_int, y_int, args);
     plot_int.set_xlabel("x label");
     plot_int.set_ylabel("y label");
-    plot_int.show_plot();
+    plot_int.show();
 }
 ```
 
