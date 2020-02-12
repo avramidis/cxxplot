@@ -13,9 +13,9 @@ main()
 {
     std::cout << "Running bar_1 example" << std::endl;
 
-    std::vector<std::pair<std::string, std::string>> args;
-    args.emplace_back("color", "r");
-    args.emplace_back("marker", "o");
+    cxxplot::Kwargs args;
+    args.add_kwarg("color", "r");
+    args.add_kwarg("marker", "o");
 
     std::vector<double> x{1, 2, 3, 4};
     std::vector<double> height{1, 2, 3, 4};
