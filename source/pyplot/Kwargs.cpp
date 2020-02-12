@@ -11,15 +11,9 @@
 
 namespace cxxplot {
 
-    Kwargs::Kwargs()
-    {
+    Kwargs::Kwargs() = default;
 
-    }
-
-    Kwargs::~Kwargs()
-    {
-
-    }
+    Kwargs::~Kwargs() = default;
 
     void
     Kwargs::add_kwarg(const std::string& key, const std::string& item)
@@ -30,12 +24,8 @@ namespace cxxplot {
     PyObject*
     Kwargs::get_pydict()
     {
-        std::vector<std::pair<std::string, std::string>> args;
-        args.emplace_back("color", "r");
-        args.emplace_back("marker", "o");
-
         PyObject* kwargs_py = PyDict_New();
-        for (auto& v:args) {
+        for (auto& v:kwargs) {
             PyDict_SetItemString(kwargs_py, v.first.c_str(), PyUnicode_FromString(v.second.c_str()));
         }
 
