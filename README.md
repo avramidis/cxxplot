@@ -30,4 +30,4 @@ The examples folder includes code examples with most of the features that are su
 * See [doc/DEVELOPING.md](doc/DEVELOPING.md) for how to develop cxxplot.
 
 #### License
-cxxplot is release under MIT license.
+cxxplot is released under MIT license.
