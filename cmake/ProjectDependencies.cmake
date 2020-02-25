@@ -1,9 +1,3 @@
-# Copyright (c) 2019 Eleftherios Avramidis <el.avramidis@gmail.com>
-#
-# Distributed under The MIT License (MIT)
-# See accompanying file LICENSE
-#---------------------------------------------------------------------------//
-
 FIND_PACKAGE(Python3 COMPONENTS Development NumPy)
 if (${Python3_FOUND})
     message(STATUS "PYTHON3 FOUND")
