@@ -14,49 +14,58 @@
 #include <map>
 
 namespace cxxplot {
-	template<class inputType>
-	class CXXPLOT_EXPORT Plot : public Pyplot<inputType> {
-	private:
-		PyObject* plot;
-		std::vector<inputType> x_default;
+    template<class inputType>
+    class Plot : public Pyplot<inputType> {
+    private:
+        PyObject* plot;
+        std::vector<inputType> x_default;
 
-	public:
-		explicit Plot(bool create_new_figure=true);
-		explicit Plot(std::vector<inputType>& y, bool create_new_figure=true);
-		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, bool create_new_figure=true);
-		explicit Plot(std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
-		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt, bool create_new_figure=true);
-		explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args, bool create_new_figure=true);
-		~Plot();
+    public:
+        CXXPLOT_EXPORT explicit  Plot(bool create_new_figure = true);
+        CXXPLOT_EXPORT explicit Plot(std::vector<inputType>& y, bool create_new_figure = true);
+        CXXPLOT_EXPORT explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y,
+                bool create_new_figure = true);
+        CXXPLOT_EXPORT explicit Plot(std::vector<inputType>& y, std::string fmt, bool create_new_figure = true);
+        CXXPLOT_EXPORT explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
+                bool create_new_figure = true);
+        CXXPLOT_EXPORT explicit Plot(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args,
+                bool create_new_figure = true);
+        CXXPLOT_EXPORT ~Plot();
 
-		void add_data(std::vector<inputType>& x, std::vector<inputType>& y);
-		void add_data(std::vector<inputType>& x, std::vector<inputType>& y,
-				Kwargs& args);
-		void add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
-		void add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
-				Kwargs& kwargs);
-	private:
-		void
-		initialize_x_default(int x_size);
+        void
+        CXXPLOT_EXPORT add_data(std::vector<inputType>& x, std::vector<inputType>& y);
+        void
+        CXXPLOT_EXPORT add_data(std::vector<inputType>& x, std::vector<inputType>& y,
+                Kwargs& args);
+        void
+        CXXPLOT_EXPORT add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
+        void
+        CXXPLOT_EXPORT add_data(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
+                Kwargs& kwargs);
+    private:
+        void
+        initialize_x_default(size_t x_size);
 
-		void
-		initialize();
+        void
+        initialize();
 
-		void
-		draw(std::vector<inputType>& x, std::vector<inputType>& y);
+        void
+        draw(std::vector<inputType>& x, std::vector<inputType>& y);
 
-		void
-		draw(std::vector<inputType>& x, std::vector<inputType>& y,
-				Kwargs& args);
+        void
+        draw(std::vector<inputType>& x, std::vector<inputType>& y,
+                Kwargs& args);
 
-		void draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
+        void
+        draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt);
 
-		void
-		draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
+        void
+        draw(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt,
                 Kwargs& kwargs);
 
-		PyObject* generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt = "");
-	};
+        PyObject*
+        generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& y, std::string fmt = "");
+    };
 }
 
 #endif

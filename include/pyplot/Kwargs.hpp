@@ -15,16 +15,17 @@
 
 namespace cxxplot {
 
-    class CXXPLOT_EXPORT Kwargs : public Matplotlib {
+    class Kwargs : public Matplotlib {
     private:
         std::vector<std::pair<std::string, std::string>> kwargs;
 
     public:
-        Kwargs();
-        ~Kwargs();
+        CXXPLOT_EXPORT Kwargs();
+        CXXPLOT_EXPORT ~Kwargs();
         void
+        CXXPLOT_EXPORT
         add_kwarg(const std::string& key, const std::string& item);
-        PyObject*
+        CXXPLOT_EXPORT PyObject*
         get_pydict();
     };
 }
