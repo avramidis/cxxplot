@@ -52,8 +52,6 @@ namespace cxxplot {
 	void
 	Histogram<inputType>::draw(std::vector<inputType>& x, int bins)
 	{
-		PyObject* x_py = ConvertToNumpy::vector_to_numpy(x);
-
 		PyObject* histogram_args = generate_args_pytuple(x, bins);
 
 		PythonCalls::pyobject_callobject_with_checks(histogram, histogram_args);

@@ -11,26 +11,23 @@ project(cxxplot
         DESCRIPTION "C++ plot library."
         HOMEPAGE_URL "https://github.com/avramidis/cxxplot")
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_CXX_STANDARD 17)
-
 # Set default visibility to hidden for all targets
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    message(STATUS "USING OPTIONS FOR GNU COMPILER")
-    set(MY_DEBUG_OPTIONS "-O0;-g;-Wall;-Wextra;-Wpedantic")
-    set(MY_RELEASE_OPTIONS "-O3;-Wall;-Wextra;-Wpedantic")
-endif ()
+# Project dependencies
+include(cmake/ProjectDependencies.cmake)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    message(STATUS "USING OPTIONS FOR MSVC COMPILER")
-    set(MY_DEBUG_OPTIONS "/Wall /wd4710")
-    set(MY_RELEASE_OPTIONS "/Wall;/wd4710;/wd4711;/wd4514")
-endif ()
+# Project settings
+include(cmake/StandardProjectSettings.cmake)
+add_library(project_options INTERFACE)
+target_compile_features(project_options INTERFACE cxx_std_17)
 
-include(dependencies/CMakeLists.txt)
+# Standard compiler warnings
+add_library(project_warnings INTERFACE)
+include(cmake/CompilerWarnings.cmake)
+set_project_warnings(project_warnings)
+
 add_subdirectory(source)
 include(GenerateExportHeader)
 generate_export_header(cxxplot)
