@@ -41,7 +41,9 @@ namespace cxxplot {
         draw(x, height, width, bottom);
     }
 
-    template <class inputType> Bar<inputType>::~Bar() { Py_DECREF(bar); }
+    template <class inputType> Bar<inputType>::~Bar() {
+        Py_DECREF(bar);
+    }
 
     template <class inputType> void Bar<inputType>::initialize() {
         bar = PythonCalls::get_pyobject_function_by_string(
