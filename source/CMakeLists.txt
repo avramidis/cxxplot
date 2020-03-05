@@ -18,6 +18,7 @@ target_sources(cxxplot PRIVATE
         pyplot/Axis.cpp
         pyplot/Kwargs.cpp
         pyplot/Bar.cpp
+        pyplot/Imshow.cpp
         generic/PythonCalls.cpp
         generic/ConvertToNumpy.cpp)
 

@@ -17,5 +17,6 @@
 #include "pyplot/Plot.hpp"
 #include "pyplot/Scatter.hpp"
 #include "pyplot/Subplot.hpp"
+#include "pyplot/Imshow.hpp"
 
 #endif

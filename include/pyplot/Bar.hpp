@@ -25,9 +25,8 @@ namespace cxxplot {
                      float width, std::vector<inputType> &bottom,
                      bool create_new_figure = true);
         ~Bar();
-        void
 
-        initialize();
+        void initialize();
 
         void draw(std::vector<inputType> &x, std::vector<inputType> &height);
         void draw(std::vector<inputType> &x, std::vector<inputType> &height,

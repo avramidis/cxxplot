@@ -69,7 +69,7 @@ namespace cxxplot {
     PyObject *
     Histogram<inputType>::generate_args_pytuple(std::vector<inputType> &x,
                                                 int bins) {
-        PyObject *x_py = ConvertToNumpy::vector_to_numpy(x);
+        PyObject *x_py = ConvertToNumpy<inputType>::vector_to_numpy(x);
         PyObject *bins_py = Py_BuildValue("i", bins);
 
         PyObject *args = PyTuple_New(2);

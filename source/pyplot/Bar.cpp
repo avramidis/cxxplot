@@ -41,7 +41,9 @@ namespace cxxplot {
         draw(x, height, width, bottom);
     }
 
-    template <class inputType> Bar<inputType>::~Bar() { Py_DECREF(bar); }
+    template <class inputType> Bar<inputType>::~Bar() {
+        Py_DECREF(bar);
+    }
 
     template <class inputType> void Bar<inputType>::initialize() {
         bar = PythonCalls::get_pyobject_function_by_string(
@@ -76,8 +78,8 @@ namespace cxxplot {
     PyObject *
     Bar<inputType>::generate_args_pytuple(std::vector<inputType> &x,
                                           std::vector<inputType> &height) {
-        PyObject *x_py = ConvertToNumpy::vector_to_numpy(x);
-        PyObject *height_py = ConvertToNumpy::vector_to_numpy(height);
+        PyObject *x_py = ConvertToNumpy<inputType>::vector_to_numpy(x);
+        PyObject *height_py = ConvertToNumpy<inputType>::vector_to_numpy(height);
 
         PyObject *args = PyTuple_New(2);
         PyTuple_SetItem(args, 0, x_py);
@@ -89,9 +91,9 @@ namespace cxxplot {
     PyObject *Bar<inputType>::generate_args_pytuple(
         std::vector<inputType> &x, std::vector<inputType> &height, float width,
         std::vector<inputType> &bottom) {
-        PyObject *x_py = ConvertToNumpy::vector_to_numpy(x);
-        PyObject *height_py = ConvertToNumpy::vector_to_numpy(height);
-        PyObject *bottom_py = ConvertToNumpy::vector_to_numpy(bottom);
+        PyObject *x_py = ConvertToNumpy<inputType>::vector_to_numpy(x);
+        PyObject *height_py = ConvertToNumpy<inputType>::vector_to_numpy(height);
+        PyObject *bottom_py = ConvertToNumpy<inputType>::vector_to_numpy(bottom);
 
         PyObject *args = PyTuple_New(4);
         PyTuple_SetItem(args, 0, x_py);
