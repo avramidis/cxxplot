@@ -7,11 +7,10 @@
 
 #define CATCH_CONFIG_MAIN
 
-#include "catch.hpp"
 #include "PythonInterpreter.hpp"
+#include "catch.hpp"
 
-TEST_CASE("Test Python3 interpreter")
-{
+TEST_CASE("Test Python3 interpreter") {
     SECTION("Load Python3 interpreter") {
         REQUIRE_NOTHROW(cxxplot::PythonInterpreter::getInstance());
     }

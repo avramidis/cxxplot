@@ -6,26 +6,24 @@
 //---------------------------------------------------------------------------//
 
 #include "Matplotlib.hpp"
+#include "PythonInterpreter.hpp"
 #include "generic/PythonCalls.hpp"
 #include <iostream>
 #include <stdexcept>
-#include "PythonInterpreter.hpp"
 
 namespace cxxplot {
-	Matplotlib::Matplotlib()
-	{
+    Matplotlib::Matplotlib() {
         PythonInterpreter::getInstance();
 
-		matplotlib_pyplot = PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
-	}
+        matplotlib_pyplot =
+            PythonCalls::get_pyobject_module_by_string("matplotlib.pyplot");
+    }
 
-	Matplotlib::~Matplotlib()
-	{
-        Py_DECREF(matplotlib_pyplot);
-	}
+    Matplotlib::~Matplotlib() { Py_DECREF(matplotlib_pyplot); }
 
-	void Matplotlib::figure() {
-		PyObject *figure = PythonCalls::get_pyobject_function_by_string(this->matplotlib_pyplot, "figure");
-		PythonCalls::pyobject_callobject_with_checks(figure);
-	}
-}
+    void Matplotlib::figure() {
+        PyObject *figure = PythonCalls::get_pyobject_function_by_string(
+            this->matplotlib_pyplot, "figure");
+        PythonCalls::pyobject_callobject_with_checks(figure);
+    }
+} // namespace cxxplot

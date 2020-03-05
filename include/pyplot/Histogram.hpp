@@ -12,28 +12,29 @@
 
 namespace cxxplot {
 
-	template<class inputType>
-	class CXXPLOT_EXPORT Histogram : public Pyplot<inputType> {
-	private:
-		PyObject* histogram;
+    template <class inputType>
+    class CXXPLOT_EXPORT Histogram : public Pyplot<inputType> {
+      private:
+        PyObject *histogram;
 
-	public:
-		Histogram();
-		explicit Histogram(std::vector<inputType>& x, int bins = 10);
-		explicit Histogram(std::vector<inputType>& x, std::vector<std::pair<std::string, std::string>>& args);
-		~Histogram();
+      public:
+        Histogram();
+        explicit Histogram(std::vector<inputType> &x, int bins = 10);
+        explicit Histogram(
+            std::vector<inputType> &x,
+            std::vector<std::pair<std::string, std::string>> &args);
+        ~Histogram();
 
-	private:
-		void
-		initialize();
+      private:
+        void initialize();
 
-		void
-		draw(std::vector<inputType>& x, int bins = 10);
+        void draw(std::vector<inputType> &x, int bins = 10);
 
-		void
-		draw(std::vector<inputType>& x, std::vector<std::pair<std::string, std::string>>& args);
-		PyObject* generate_args_pytuple(std::vector<inputType>& x, int bins = 10);
-	};
-}
+        void draw(std::vector<inputType> &x,
+                  std::vector<std::pair<std::string, std::string>> &args);
+        PyObject *generate_args_pytuple(std::vector<inputType> &x,
+                                        int bins = 10);
+    };
+} // namespace cxxplot
 
 #endif

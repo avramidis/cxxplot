@@ -15,18 +15,18 @@ namespace cxxplot {
     class PythonInterpreter;
 
     class CXXPLOT_EXPORT PythonInterpreter {
-    private:
-        static PythonInterpreter* instance;
+      private:
+        static PythonInterpreter *instance;
 
         PythonInterpreter();
 
-    public:
-        PythonInterpreter(PythonInterpreter& obj) = delete;
+      public:
+        PythonInterpreter(PythonInterpreter &obj) = delete;
 
-        static PythonInterpreter* getInstance();
+        static PythonInterpreter *getInstance();
 
         ~PythonInterpreter();
     };
-}
+} // namespace cxxplot
 
 #endif

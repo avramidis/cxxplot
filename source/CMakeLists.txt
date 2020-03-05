@@ -26,7 +26,7 @@ target_include_directories(cxxplot PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>/..
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-target_link_libraries(cxxplot PRIVATE project_options project_warnings Python3::Python Python3::NumPy)
+target_link_libraries(cxxplot PRIVATE cxxplot_project_options cxxplot_project_warnings Python3::Python Python3::NumPy)
 
 set_target_properties(cxxplot PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"

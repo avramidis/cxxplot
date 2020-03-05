@@ -11,22 +11,22 @@
 #define PY_SSIZE_T_CLEAN
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 
-#include <Python.h>
 #include "cxxplot_export.h"
-#include <vector>
+#include <Python.h>
 #include <string>
+#include <vector>
 
 namespace cxxplot {
-	class CXXPLOT_EXPORT Matplotlib {
-	public:
-		PyObject* matplotlib_pyplot;
+    class CXXPLOT_EXPORT Matplotlib {
+      public:
+        PyObject *matplotlib_pyplot;
 
-		Matplotlib();
+        Matplotlib();
 
-		~Matplotlib();
+        ~Matplotlib();
 
-		void figure();
-	};
-}
+        void figure();
+    };
+} // namespace cxxplot
 
 #endif
