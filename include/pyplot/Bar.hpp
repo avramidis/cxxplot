@@ -12,35 +12,38 @@
 #include "pyplot/Pyplot.hpp"
 
 namespace cxxplot {
-    template<class inputType>
+    template <class inputType>
     class CXXPLOT_EXPORT Bar : public Pyplot<inputType> {
-    private:
-        PyObject* bar;
+      private:
+        PyObject *bar;
 
-    public:
+      public:
         explicit Bar(bool create_new_figure = true);
-        explicit Bar(std::vector<inputType>& x, std::vector<inputType>& height, bool create_new_figure = true);
-        explicit Bar(std::vector<inputType>& x, std::vector<inputType>& height, float width,
-                std::vector<inputType>& bottom, bool create_new_figure = true);
+        explicit Bar(std::vector<inputType> &x, std::vector<inputType> &height,
+                     bool create_new_figure = true);
+        explicit Bar(std::vector<inputType> &x, std::vector<inputType> &height,
+                     float width, std::vector<inputType> &bottom,
+                     bool create_new_figure = true);
         ~Bar();
         void
 
         initialize();
 
-        void
-        draw(std::vector<inputType>& x, std::vector<inputType>& height);
-        void
-        draw(std::vector<inputType>& x, std::vector<inputType>& height, float width, std::vector<inputType>& bottom);
+        void draw(std::vector<inputType> &x, std::vector<inputType> &height);
+        void draw(std::vector<inputType> &x, std::vector<inputType> &height,
+                  float width, std::vector<inputType> &bottom);
 
-        PyObject*
-        generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& height);
-        PyObject*
-        generate_args_pytuple(std::vector<inputType>& x, std::vector<inputType>& height, float width,
-                std::vector<inputType>& bottom);
+        PyObject *generate_args_pytuple(std::vector<inputType> &x,
+                                        std::vector<inputType> &height);
+        PyObject *generate_args_pytuple(std::vector<inputType> &x,
+                                        std::vector<inputType> &height,
+                                        float width,
+                                        std::vector<inputType> &bottom);
         void
-        add_data(std::vector<inputType>& x, std::vector<inputType>& height, float width = 0.8,
-                std::vector<inputType>& bottom = std::vector<inputType>());
+        add_data(std::vector<inputType> &x, std::vector<inputType> &height,
+                 float width = 0.8,
+                 std::vector<inputType> &bottom = std::vector<inputType>());
     };
-}
+} // namespace cxxplot
 
 #endif

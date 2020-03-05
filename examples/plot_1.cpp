@@ -5,12 +5,10 @@
 // See accompanying file LICENSE
 //---------------------------------------------------------------------------//
 
-#include <iostream>
 #include "cxxplot.hpp"
+#include <iostream>
 
-int
-main()
-{
+int main() {
     std::cout << "Running plot_1 example" << std::endl;
 
     cxxplot::Kwargs args;

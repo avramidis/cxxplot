@@ -8,8 +8,8 @@
 #ifndef CXXPLOT_AXIS_HPP
 #define CXXPLOT_AXIS_HPP
 
-#include "cxxplot_export.h"
 #include "Matplotlib.hpp"
+#include "cxxplot_export.h"
 
 namespace cxxplot {
 
@@ -26,22 +26,21 @@ namespace cxxplot {
     };
 
     class CXXPLOT_EXPORT Axis : public Matplotlib {
-    private:
-        PyObject* axis;
-    public:
+      private:
+        PyObject *axis;
+
+      public:
         Axis();
         Axis(float xmin, float xmax, float ymin, float ymax);
         explicit Axis(Axis_option option);
-        explicit Axis(std::vector<std::pair<std::string, std::string>>& args);
+        explicit Axis(std::vector<std::pair<std::string, std::string>> &args);
         ~Axis();
 
-    private:
-        void
-        initialize();
+      private:
+        void initialize();
 
-        const char*
-        get_option_string_value(Axis_option option);
+        const char *get_option_string_value(Axis_option option);
     };
-}
+} // namespace cxxplot
 
 #endif

@@ -8,35 +8,32 @@
 #ifndef CXXPLOT_SCATTER_HPP
 #define CXXPLOT_SCATTER_HPP
 
-#include "Pyplot.hpp"
 #include "Kwargs.hpp"
-#include <string>
+#include "Pyplot.hpp"
 #include <map>
+#include <string>
 
 namespace cxxplot {
-	template<class inputType>
-	class CXXPLOT_EXPORT Scatter : public Pyplot<inputType> {
-	private:
-		PyObject* scatter;
+    template <class inputType>
+    class CXXPLOT_EXPORT Scatter : public Pyplot<inputType> {
+      private:
+        PyObject *scatter;
 
-	public:
-		Scatter();
-		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y);
-		explicit Scatter(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args);
-		~Scatter();
+      public:
+        Scatter();
+        explicit Scatter(std::vector<inputType> &x, std::vector<inputType> &y);
+        explicit Scatter(std::vector<inputType> &x, std::vector<inputType> &y,
+                         Kwargs &args);
+        ~Scatter();
 
-	private:
-		void
-		initialize();
+      private:
+        void initialize();
 
-		void
-		draw(std::vector<inputType>& x, std::vector<inputType>& y);
+        void draw(std::vector<inputType> &x, std::vector<inputType> &y);
 
-		void
-		draw(std::vector<inputType>& x, std::vector<inputType>& y, Kwargs& args);
-
-	};
-}
+        void draw(std::vector<inputType> &x, std::vector<inputType> &y,
+                  Kwargs &args);
+    };
+} // namespace cxxplot
 
 #endif
-

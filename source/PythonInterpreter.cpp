@@ -12,36 +12,35 @@
 
 namespace cxxplot {
 
-    PythonInterpreter* PythonInterpreter::instance = nullptr;
+    PythonInterpreter *PythonInterpreter::instance = nullptr;
 
-    PythonInterpreter::PythonInterpreter()
-    {
+    PythonInterpreter::PythonInterpreter() {
         Py_Initialize();
-        if (Py_IsInitialized()==0) {
-            throw std::runtime_error("Python3 interpreter could not be initialized!");
+        if (Py_IsInitialized() == 0) {
+            throw std::runtime_error(
+                "Python3 interpreter could not be initialized!");
         }
 
         if (PyRun_SimpleString("import sys\n"
-                               "sys.argv.append('')\n")==-1) {
+                               "sys.argv.append('')\n") == -1) {
             //"print(sys.argv)\n");
-            throw std::runtime_error("Python3 interpreter could not import sys!");
+            throw std::runtime_error(
+                "Python3 interpreter could not import sys!");
         }
     }
 
-    PythonInterpreter::~PythonInterpreter()
-    {
-        if (Py_FinalizeEx()<0) {
+    PythonInterpreter::~PythonInterpreter() {
+        if (Py_FinalizeEx() < 0) {
             PyErr_Print();
-            std::cout << "Warning: Python interpreter could not be finalized!" << std::endl;
+            std::cout << "Warning: Python interpreter could not be finalized!"
+                      << std::endl;
         }
     }
 
-    PythonInterpreter*
-    PythonInterpreter::getInstance()
-    {
+    PythonInterpreter *PythonInterpreter::getInstance() {
         if (!instance) {
             instance = new PythonInterpreter();
         }
         return new PythonInterpreter();
     }
-}
+} // namespace cxxplot
