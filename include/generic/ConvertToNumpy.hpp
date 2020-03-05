@@ -18,25 +18,16 @@
 
 namespace cxxplot {
 
+    template <class inputType>
     class CXXPLOT_EXPORT ConvertToNumpy {
       public:
-        [[nodiscard]] static PyObject *
-        covert_to_numpy_array(std::vector<int> &vector);
+        [[nodiscard]] static PyObject *covert_to_numpy_array(std::vector<inputType> &vector);
+        [[nodiscard]] static PyObject *covert_to_numpy_array(std::vector<std::vector<inputType>> &vector);
 
-        [[nodiscard]] static PyObject *
-        covert_to_numpy_array(std::vector<float> &vector);
+        [[nodiscard]] static PyObject *vector_to_numpy(std::vector<inputType> &vector);
+        [[nodiscard]] static PyObject *vector_to_numpy(std::vector<std::vector<inputType>> &vector);
 
-        [[nodiscard]] static PyObject *
-        covert_to_numpy_array(std::vector<double> &vector);
-
-        [[nodiscard]] static PyObject *
-        vector_to_numpy(std::vector<int> &vector);
-
-        [[nodiscard]] static PyObject *
-        vector_to_numpy(std::vector<float> &vector);
-
-        [[nodiscard]] static PyObject *
-        vector_to_numpy(std::vector<double> &vector);
+        [[nodiscard]] static NPY_TYPES get_numpy_type();
     };
 } // namespace cxxplot
 
