@@ -29,18 +29,15 @@ namespace cxxplot {
         void initialize();
 
         void draw(std::vector<inputType> &x, std::vector<inputType> &height);
-        void draw(std::vector<inputType> &x, std::vector<inputType> &height,
-                  float width, std::vector<inputType> &bottom);
+        void draw(std::vector<inputType> &x, std::vector<inputType> &height, double width, std::vector<inputType> &bottom);
 
         PyObject *generate_args_pytuple(std::vector<inputType> &x,
                                         std::vector<inputType> &height);
         PyObject *generate_args_pytuple(std::vector<inputType> &x,
-                                        std::vector<inputType> &height,
-                                        float width,
+                                        std::vector<inputType> &height, double width,
                                         std::vector<inputType> &bottom);
         void
-        add_data(std::vector<inputType> &x, std::vector<inputType> &height,
-                 float width = 0.8,
+        add_data(std::vector<inputType> &x, std::vector<inputType> &height, double width = 0.8,
                  std::vector<inputType> &bottom = std::vector<inputType>());
     };
 } // namespace cxxplot

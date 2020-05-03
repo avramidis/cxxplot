@@ -12,7 +12,7 @@
 namespace cxxplot {
     Axis::Axis() { initialize(); }
 
-    Axis::Axis(float xmin, float xmax, float ymin, float ymax) {
+    Axis::Axis(double xmin, double xmax, double ymin, double ymax) {
         initialize();
 
         PyObject *args = PyTuple_New(1);
