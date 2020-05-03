@@ -12,10 +12,6 @@
 
 namespace cxxplot {
 
-    template <class inputType> Pyplot<inputType>::Pyplot(){};
-
-    template <class inputType> Pyplot<inputType>::~Pyplot(){};
-
     template <class inputType>
     void Pyplot<inputType>::set_xlabel(
         std::string const &label,

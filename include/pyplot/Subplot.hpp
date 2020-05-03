@@ -15,10 +15,10 @@ namespace cxxplot {
     class CXXPLOT_EXPORT Subplot : public Matplotlib {
       private:
         PyObject *subplots;
-        int number_rows, number_columns;
+        int rows_count, columns_count;
 
       public:
-        Subplot(int number_rows, int number_columns);
+        Subplot(int subplot_rows_count, int subplot_columns_count);
         ~Subplot();
         void initialize();
         void set_subplot_index(int index);

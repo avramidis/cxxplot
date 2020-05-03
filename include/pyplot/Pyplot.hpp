@@ -20,9 +20,9 @@ namespace cxxplot {
         PyObject *ylabel;
         PyObject *show_py_object;
 
-        Pyplot();
+        Pyplot() = default;
 
-        ~Pyplot();
+        ~Pyplot() = default;
 
         void set_xlabel(std::string const &label,
                         std::map<std::string, std::string> const &args = {});

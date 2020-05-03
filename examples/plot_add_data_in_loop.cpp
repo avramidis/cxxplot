@@ -24,10 +24,10 @@ main()
 	plot_double.set_xlabel("x label");
 	plot_double.set_ylabel("y label");
 
-	for (int i = 0; i<10; i++) {
-		for (int j = 0; j<x_double.size(); j++) {
-			x_double[i][j] = j;
-			y_double[i][j] += i;
+	for (unsigned long i = 0; i<10; i++) {
+		for (unsigned long j = 0; j<x_double.size(); j++) {
+			x_double[i][j] = static_cast<double>(j);
+			y_double[i][j] += static_cast<double>(i);
 		}
 		plot_double.add_data(x_double[i], y_double[i], args);
 	}

@@ -31,7 +31,7 @@ namespace cxxplot {
 
       public:
         Axis();
-        Axis(float xmin, float xmax, float ymin, float ymax);
+        Axis(double xmin, double xmax, double ymin, double ymax);
         explicit Axis(Axis_option option);
         explicit Axis(std::vector<std::pair<std::string, std::string>> &args);
         ~Axis();
