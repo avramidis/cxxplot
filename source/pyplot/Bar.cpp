@@ -52,7 +52,7 @@ namespace cxxplot {
 
     template <class inputType>
     void Bar<inputType>::add_data(std::vector<inputType> &x,
-                                  std::vector<inputType> &height, float width,
+                                  std::vector<inputType> &height, double width,
                                   std::vector<inputType> &bottom) {
         draw(x, height, width, bottom);
     }
@@ -67,7 +67,7 @@ namespace cxxplot {
 
     template <class inputType>
     void Bar<inputType>::draw(std::vector<inputType> &x,
-                              std::vector<inputType> &height, float width,
+                              std::vector<inputType> &height, double width,
                               std::vector<inputType> &bottom) {
         PyObject *args = generate_args_pytuple(x, height, width, bottom);
 
@@ -89,7 +89,8 @@ namespace cxxplot {
 
     template <class inputType>
     PyObject *Bar<inputType>::generate_args_pytuple(
-        std::vector<inputType> &x, std::vector<inputType> &height, float width,
+        std::vector<inputType> &x, std::vector<inputType> &height,
+                                                    double width,
         std::vector<inputType> &bottom) {
         PyObject *x_py = ConvertToNumpy<inputType>::vector_to_numpy(x);
         PyObject *height_py = ConvertToNumpy<inputType>::vector_to_numpy(height);
