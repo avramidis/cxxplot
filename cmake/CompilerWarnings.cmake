@@ -63,7 +63,7 @@ function(set_project_warnings project_name)
     if (WARNINGS_AS_ERRORS)
         set(CLANG_WARNINGS ${CLANG_WARNINGS} -Werror)
         set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
-    endif()
+    endif ()
 
     set(GCC_WARNINGS
             ${CLANG_WARNINGS}
@@ -76,13 +76,15 @@ function(set_project_warnings project_name)
             -Wuseless-cast # warn if you perform a cast to the same type
             )
 
-    if(MSVC)
+    if (MSVC)
         set(PROJECT_WARNINGS ${MSVC_WARNINGS})
-    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         set(PROJECT_WARNINGS ${CLANG_WARNINGS})
-    else()
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(PROJECT_WARNINGS ${GCC_WARNINGS})
-    endif()
+    else ()
+        message(WARNING "Using default compiler warnings!")
+    endif ()
 
     target_compile_options(${project_name} INTERFACE ${PROJECT_WARNINGS})
 
